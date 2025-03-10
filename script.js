@@ -320,35 +320,7 @@ toggleButton.addEventListener('click', function() {
 document.querySelectorAll('.animated-text span').forEach((span, i) => {
   span.style.setProperty('--i', i);
 });
-    //(Основные принципы)
-    canvas.addEventListener('mousemove', (event) => {
-    const x = event.clientX;
-    const y = event.clientY;
-    const blurRadius = 20; // Радиус размытия
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.filter = 'blur(5px)';  // Размытие всего видео
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-    ctx.filter = 'none'; // Убираем размытие для центра
-    ctx.beginPath();
-    ctx.arc(x, y, blurRadius, 0, 2 * Math.PI);  // Рисуем круг
-    ctx.clip(); // Вырезаем круг, чтобы он не был размытым
-
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    });
-    const showAchievementButton = document.getElementById('showAchievementButton');
-    const achievement = document.getElementById('achievement1'); // Или любой другой ID достижения
-    
-    showAchievementButton.addEventListener('click', () => {
-      achievement.classList.add('show'); // Показываем достижение
-    
-      // Скрываем достижение через 3 секунды
-      setTimeout(() => {
-        achievement.classList.remove('show');
-      }, 3000);
-    });
-    
+   
     
     
 
