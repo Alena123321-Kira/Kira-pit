@@ -1,0 +1,90 @@
+.bsa-placeholder {
+    width: 100%;
+    background: #eff3f6 !important;
+    text-align: center;
+    margin-right: 0.5rem;
+    border-radius: 0.4rem;
+    overflow: hidden;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#bsa-placeholder-search{
+    width: 100%;
+    background: #eff3f6 !important;
+    text-align: center;
+    border-radius: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 270px;
+
+}
+#bsa-placeholder-search2 {
+    width: 100%;
+    background: #eff3f6 !important;
+    text-align: center;
+    border-radius: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 270px;
+  
+}
+
+.fondo-blanco {
+    background-color: #fff !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#apu-mixed,
+#apu-mixed-packs,
+#apu-mixed-packs2,
+#apu-mixed2,
+.apu-mixed-packs {
+    float: left;
+    text-align: center;
+    margin: 0.5rem !important;
+    border-radius: 0.4rem;
+    overflow: hidden;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa !important;
+}
+#apu-mixed,
+#apu-mixed2 {
+    float: right !important;
+    margin: 0.4rem !important;
+}
+.apu {
+    text-align: center !important;
+    border: 0.3rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 400px) {
+    .apu {
+        /* Puedes ajustar los estilos aquí */
+        max-width: 320px; /* Establece el ancho máximo a 320px */
+        background-color: #fff !important;
+
+        /* Otros estilos específicos para móviles */
+    }
+}
+.bg-white {
+    background-color: #fff !important;
+}
+.bg-grey {
+    background-color: #eff3f6 ;
+}
+.right_column{
+    position: sticky !important;
+    top:0 !important;
+}

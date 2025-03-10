@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    overflow: hidden; /* Отключаем прокрутку, чтобы анимации не влияли на нее */
+    height: 100vh; /* Занимаем всю высоту экрана */
+    background-color: #ADD8E6; /* Светло-голубой по умолчанию */
+  }
+  
+  /* Анимация дождя */
+  .rain {
+    position: absolute;
+    width: 1px;
+    height: 15px;
+    background-color: #FFFFFF;
+    opacity: 0.7;
+    animation: rain 1s linear infinite;
+  }
+  
+  @keyframes rain {
+    to {
+      transform: translateY(100vh);
+    }
+  }
+  
+  /* Анимация солнца */
+  .sun {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #FFD700;
+    animation: sun 10s linear infinite;
+  }
+  
+  @keyframes sun {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Анимация облаков */
+  .cloud {
+    position: absolute;
+    width: 150px;
+    height: 70px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: cloud 20s linear infinite;
+  }
+  
+  @keyframes cloud {
+    to {
+      transform: translateX(calc(100vw + 150px));
+    }
+  }

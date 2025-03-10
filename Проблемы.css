@@ -1,0 +1,220 @@
+/* Общие стили */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8; /* Светло-серый фон */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Шапка */
+header {
+    background-color: #f0f0f0; /* Светло-серый фон шапки */
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav .logo {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #664d03;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #664d03;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #a3873a;
+}
+
+/* Секция Hero (Введение) */
+.hero {
+    background-color: #f5e8c7; /* Светло-желтый фон */
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    color: #664d03;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    color: #777;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #a3873a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #664d03;
+}
+
+/* Общие стили для секций */
+.section {
+    padding: 80px 0;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section h2 {
+    font-size: 2em;
+    color: #664d03;
+    margin-bottom: 30px;
+}
+
+/* Секция "Проблемы" */
+.problem-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    color: #664d03;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #777;
+}
+
+/* Секция "Решения" */
+.solution-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.solution-list li {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.solution-list p {
+    color: #777;
+    font-size: 1.1em;
+}
+
+/* Секция "Об авторе" */
+.author-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+/* Футер */
+footer {
+    background-color: #f0f0f0;
+    padding: 20px 0;
+    text-align: center;
+    color: #777;
+    font-size: 0.9em;
+}
+
+/* Анимации */
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+/*Медиа запросы*/
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul {
+        margin-top: 10px;
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    .problem-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 80%;
+    }
+    .hero {
+        padding: 50px 0;
+    }
+
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+}

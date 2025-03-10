@@ -1,0 +1,1050 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  
+  header {
+    background-color: #6e1414;
+    color: #fff;
+    padding: 1em 0;
+    text-align: center;
+  }
+  .modal {
+    display: none;
+    position: absolute; /* Важно! */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+
+
+  .modal.show {
+    display: flex;
+  }
+
+  .modal.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .modal-content {
+    background-color: rgb(171, 120, 238);
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+  }
+
+   .modal-content span {
+     position: absolute;
+     top: 10px;
+     right: 10px;
+     font-size: 20px;
+     cursor: pointer;
+   }
+   body {
+    transition: background-color 0.5s ease; /* Плавный переход */
+   }
+   
+.container {
+  text-align: center;
+}
+
+/* Стили для разных периодов времени */
+.morning {
+    background-color: #87CEEB; /* Светло-голубой (утро) */
+    color: black;
+}
+.mornin {
+  background-color: #46c0f0; /* Светло-голубой (утро) */
+  color: black;
+}
+.afternoon {
+    background-color: #4194cc; /* Светло-оранжевый (день) */
+    color: black;
+  
+}
+.afternoo {
+  background-color: #1f49be; /* Светло-оранжевый (день) */
+  color: black;
+
+}
+.evening {
+    background-color: #3f5ba8; /* Сине-серый (вечер) */
+}
+.evenin {
+  background-color: #203b85; /* Сине-серый (вечер) */
+}
+
+.night {
+    background-color: #76309e; /* Тёмно-серый (ночь) */
+}
+.night {
+  background-color: #60169c; /* Тёмно-серый (ночь) */
+}
+.achievements {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.achievement {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.achievement i {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.count {
+  font-size: 2em;
+  font-weight: bold;
+  color: #007bff; /* Пример: синий цвет */
+}
+.container {
+  position: relative;
+  width: 300px;
+  margin: 50px auto;
+}
+
+#photoButton {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Чтобы перекрытие было над всем контентом */
+}
+
+.photo {
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.photo img {
+  max-width: 80%;
+  max-height: 80%;
+}
+
+header {
+  background-color: #8869df;
+  color: rgb(255, 255, 255);
+  padding: 1em 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+nav {
+  display: flex;
+  justify-content: center;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1em;
+}
+  .parallax-container {
+    position: relative;
+    background-image: url("https://avatars.mds.yandex.net/i?id=f2f068e89e0f2538ef07f62501d53d8d_l-7016539-images-thumbs&n=13");
+    height: 100vh; /* Высота контейнера */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+  .accordion-header {
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    background: #f0f0f0;
+    width: 100%;
+    text-align: left;
+  }
+  .accordion-item.active .accordion-content {
+    max-height: 500px; /* Задайте максимальную высоту */
+  }
+  section {
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .image-container img {
+    width: 200px;
+    margin: 10px;
+  }
+
+  
+  footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+  }
+  .progress-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #eee;
+    z-index: 1000;
+    }
+
+    .progress-bar {
+      height: 0px;
+      background: #f7f8f8;
+      width: 100%;
+      transition: width 0.2s ease;
+    }
+.slideshow {
+  overflow: hidden;
+  position: relative;
+}
+.slide {
+    display: none;
+    transition: opacity 1s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.slide.active {
+    display: block;
+    opacity: 1;
+ }
+ 
+.ripple-button {
+  position: relative;
+  overflow: hidden;
+  background-color: #9c8aec;
+  color: rgb(106, 2, 138);
+  padding: 15px 30px;
+  border: none;
+  cursor: pointer;
+
+  border-radius: 5px;
+}
+
+.ripple-button:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 50%);
+    transform: scale(0);
+    transition: transform 0.5s ease-out;
+    z-index: 1;
+ }
+
+.ripple-button:hover:after {
+    transform: scale(2);
+}
+
+.ripple-button:active:after {
+    transform: scale(2); /* Удерживаем эффект при клике */
+}
+.scroll-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 5px;
+  background: #3c0877;
+  z-index: 1000;
+}
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.animated-text {
+  display: flex;
+  font-size: 2em;
+}
+
+.animated-text span {
+  display: inline-block;
+  animation: textAnimation 1s ease-in-out forwards;
+  animation-delay: calc(0.1s * var(--i));
+  opacity: 0;
+}
+
+@keyframes textAnimation {
+  0% { transform: translateY(-50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.glitch-text {
+  position: relative;
+  color: #ffffff;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #9555bb;
+  clip: rect(44px,100px,56px,0);
+  animation: glitch-anim 3s infinite linear;
+}
+.glitch-text::after {
+  clip: rect(12px,100px,44px,0);
+  animation: glitch-anim 5s infinite linear;
+}
+@keyframes glitch-anim {
+  0% { transform: translate(0); }
+  10% { transform: translate(-5px, 5px); }
+  20% { transform: translate(10px, -10px); }
+  30% { transform: translate(-15px, 15px); }
+  40% { transform: translate(20px, -20px); }
+  50% { transform: translate(-25px, 25px); }
+  60% { transform: translate(30px, -30px); }
+  70% { transform: translate(-35px, 35px); }
+  80% { transform: translate(40px, -40px); }
+  90% { transform: translate(-45px, 45px); }
+  100% { transform: translate(0); }
+}
+.custom-cursor {
+  pointer-events: none; /* Отключаем клики на кастомном курсоре */
+  width: 20px;
+  height: 20px;
+  background: rgb(55, 0, 255);
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-20%, -20%);
+  transition: transform 0.1s ease;
+  z-index: 9999;
+}
+.floating-element {
+  animation: float 3s ease-in-out infinite;
+}
+.achievement {
+  position: fixed; /* Фиксированное положение на экране */
+  top: 20px;
+  right: 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  opacity: 0; /* Изначально скрываем достижение */
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Плавное появление и движение */
+  transform: translateX(100%); /* Сдвигаем вправо за пределы экрана */
+  z-index: 1001; /* Убедитесь, что оно выше оверлея */
+}
+
+.achievement img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.achievement.show {
+  opacity: 1; /* Делаем достижение видимым */
+  transform: translateX(0); /* Возвращаем на место */
+}
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); } /* Меняйте значение по желанию */
+  100% { transform: translateY(0); }
+}
+.video-text {
+  font-size: 5em;
+  color: #f50707;
+  background: url(Первенство_Астраханской_области_по_ФКК_1_й_юнoшecкий_разряд\,_дeвoчки.mp4) repeat;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#myCanvas {
+  width: 40%; /* Занимает 50% ширины родительского элемента */
+  height: auto; /* Сохраняет пропорции */
+}
+#shape {
+  animation: morph 15s infinite alternate;
+  }
+
+  @keyframes morph {
+    0% { transform: rotate(200deg); }
+    100% { transform: rotate(720deg); }
+  }
+  
+  #shape {
+    animation: morph 15s infinite linear;
+  }
+  #starButton {
+    background-color: #4CAF50; /* Зеленый цвет */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  #starContainer {
+    position: absolute; /* Абсолютное позиционирование */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Скрываем звезды, выходящие за границы */
+    pointer-events: none; /* Позволяет кликать элементы под контейнером */
+  }
+  .animated-icon {
+    animation: rotate 2s linear infinite; /* Применяем анимацию rotate */
+  }
+
+  .star {
+    position: absolute;
+    width: 30px;  /* Размер звезды */
+    height: 30px;
+    background: url('star.png') no-repeat center center; /* Замените на URL своей звезды */
+    background-size: cover;
+    animation: flyAway 2s linear forwards; /* Запуск анимации */
+  }
+  
+  @keyframes flyAway {
+    0% {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(200vw, -50vh); /* Улетает вправо и вверх */
+      opacity: 0;
+    }
+  }
+  @keyframes flyRight {  /* Новая анимация */
+    0% { transform: translate(-50%, -50%); opacity: 1; }
+    100% { transform: translate(200%, -50%); opacity: 0; }
+  }
+  
+  .wavy-text {
+    font-size: 3em; /* Размер текста */
+    text-align: center; /* Выравнивание по центру */
+  }
+  
+  .wavy-text span {
+    display: inline-block; /* Чтобы можно было применять transform */
+    animation: wave 1s infinite; /* Применяем анимацию wave */
+    animation-delay: calc(0.1s * var(--index)); /* Разные задержки для каждой буквы */
+  }
+  
+  @keyframes wave {
+    0%, 60%, 100% {
+      transform: translateY(0); /* Нет сдвига по вертикали */
+    }
+    30% {
+      transform: translateY(-0.5em); /* Сдвиг вверх на 0.5em */
+    }
+  }
+  .hover-effect {
+    background-color: #853ac2; /* Светло-серый фон */
+    padding: 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out; /* Плавный переход при наведении */
+    cursor: pointer; /* Меняем курсор на указатель */
+  }
+  
+  .hover-effect:hover {
+    background-color: var(--primary-color); /* Используем переменную для цвета */
+    color: rgb(63, 0, 122);
+    box-shadow: 0 20px 5px rgba(90, 0, 192, 0.3); /* Тень при наведении */
+    transform: translateY(-10px); /* Небольшой сдвиг вверх */
+  }
+  .shape-button {
+    width: 150px;
+    height: 50px;
+    background-color: var(--secondary-color);
+    color: rgb(255, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-radius 0.3s ease, width 0.3s ease;
+  }
+  .glass-button {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1); /* Полупрозрачный белый фон */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Полупрозрачная белая рамка */
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    backdrop-filter: blur(5px); /* Размытие фона под кнопкой */
+    transition: background 0.3s ease;
+  }
+  
+  .glass-button:hover {
+    background: rgba(255, 255, 255, 0.2); /* Усиливаем прозрачность при наведении */
+  }
+  
+  .glass-button::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), transparent); /* Создаем блик */
+    border-radius: 10px;
+    pointer-events: none;
+    animation: shine 5s infinite linear; /* Запускаем анимацию блика */
+  }
+  
+  @keyframes shine {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  .shape-button:hover {
+    border-radius: 50%; /* Превращаем в круг */
+    width: 50px;      /* Делаем ширину равной высоте для круга */
+  }
+  .hidden-text {
+    display: none; /* Скрываем текст по умолчанию */
+    margin-top: 10px;
+  }
+  body {
+    height: 6000px; /* Для создания прокрутки */
+    transition: background-color 0.5s ease; /* Плавный переход при изменении цвета */
+  }
+  
+  .scrolled {
+    background-color:rgb(116, 116, 196); /* Используем переменную для цвета */
+  }
+  .glitch {
+    position: relative; /* Для позиционирования псевдоэлементов */
+    font-size: 2em;
+    color: var(--primary-color); /* Используем переменную для цвета */
+    animation: glitch-anim 5s linear infinite; /* Применяем анимацию glitch-anim */
+  }
+  
+  @keyframes glitch-anim {
+    0% {
+      clip: rect(96px, 9999px, 31px, 0); /* Обрезаем текст */
+    }
+    1% {
+      clip: rect(30px, 9999px, 111px, 0);
+    }
+    2% {
+      clip: rect(31px, 9999px, 92px, 0);
+    }
+    3% {
+      clip: rect(4px, 9999px, 99px, 0);
+    }
+    4% {
+      clip: rect(111px, 9999px, 99px, 0);
+    }
+    5% {
+      clip: rect(106px, 9999px, 120px, 0);
+    }
+    6% {
+      clip: rect(103px, 9999px, 119px, 0);
+    }
+    7% {
+      clip: rect(25px, 9999px, 102px, 0);
+    }
+    8% {
+      clip: rect(105px, 9999px, 99px, 0);
+    }
+    9% {
+      clip: rect(101px, 9999px, 86px, 0);
+    }
+    10% {
+      clip: rect(108px, 9999px, 99px, 0);
+    }
+  }
+  
+  .glitch:before {
+    content: attr(data-text); /* Копируем текст */
+    position: absolute;
+    left: 2px;
+    text-shadow: -1px 0 red; /* Красная тень */
+    top: 0;
+    color: rgb(25, 0, 255);
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0); /* Обрезаем текст */
+    animation: glitch-anim2 2s linear infinite; /* Применяем анимацию glitch-anim2 */
+  }
+  
+  @keyframes glitch-anim2 {
+    0% {
+      clip: rect(109px, 9999px, 47px, 0);
+    }
+    1% {
+      clip: rect(12px, 9999px, 76px, 0);
+    }
+    2% {
+      clip: rect(62px, 9999px, 6px, 0);
+    }
+    3% {
+      clip: rect(100px, 9999px, 71px, 0);
+    }
+    4% {
+      clip: rect(99px, 9999px, 10px, 0);
+    }
+    5% {
+      clip: rect(23px, 9999px, 8px, 0);
+    }
+    6% {
+      clip: rect(56px, 9999px, 100px, 0);
+    }
+    7% {
+      clip: rect(108px, 9999px, 68px, 0);
+    }
+    8% {
+      clip: rect(88px, 9999px, 39px, 0);
+    }
+    9% {
+      clip: rect(103px, 9999px, 12px, 0);
+    }
+    10% {
+      clip: rect(70px, 9999px, 61px, 0);
+    }
+  }
+      .glitch:after {
+        content: attr(data-text); /* Копируем текст */
+        position: absolute;
+        left: -1px;
+        text-shadow: 2px 0 rgb(0, 131, 28); /* Синяя тень */
+        top: 0;
+        color: rgb(255, 255, 255);
+        overflow: hidden;
+        clip: rect(0, 900px, 0, 0); /* Обрезаем текст */
+        animation: glitch-anim3 2s linear infinite; /* Применяем анимацию glitch-anim3 */
+      }
+      
+      @keyframes glitch-anim3 {
+        0% {
+          clip: rect(8px, 9999px, 108px, 0);
+        }
+        1% {
+          clip: rect(51px, 9999px, 108px, 0);
+        }
+        2% {
+          clip: rect(114px, 9999px, 70px, 0);
+        }
+        3% {
+          clip: rect(38px, 9999px, 72px, 0);
+        }
+        4% {
+          clip: rect(22px, 9999px, 66px, 0);
+        }
+        5% {
+          clip: rect(104px, 9999px, 118px, 0);
+        }
+        6% {
+          clip: rect(11px, 9999px, 45px, 0);
+        }
+        7% {
+          clip: rect(105px, 9999px, 110px, 0);
+        }
+        8% {
+          clip: rect(91px, 9999px, 12px, 0);
+        }
+        9% {
+          clip: rect(103px, 9999px, 12px, 0);
+        }
+        10% {
+          clip: rect(70px, 9999px, 61px, 0);
+        }
+        
+      }
+      .distortion-container {
+        position: relative; /* Для позиционирования псевдоэлемента */
+        overflow: hidden; /* Скрываем части изображения и псевдоэлемента, выходящие за пределы контейнера */
+      }
+      
+      .distortion-container img {
+        display: block; /* Убираем отступы у изображения */
+        width: 200px;
+        height: auto;
+        transition: transform 0.3s ease-in-out; /* Плавный переход при наведении */
+      }
+      
+      .distortion-container:hover img {
+        transform: scale(2.1); /* Увеличиваем изображение при наведении */
+      }
+      .achievements {
+        width: 500px;
+        height: 300px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        position: relative;
+        overflow: hidden;
+        margin: 20px;
+    }
+    
+    .achievements:before {
+        content: 'График достижений';
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 14px;
+        color: #999;
+    }
+    
+    .bar {
+        position: absolute;
+        bottom: 0;
+        width: 60px;
+        background-color: #5abfd8;
+        transition: height 0.5s ease;
+        cursor: pointer;
+        border-radius: 3px 3px 0 0;
+        color: rgb(0, 26, 255);
+        text-align: center;
+    }
+    
+    .bar:hover {
+        background-color: #085ec0;
+    }
+    .masked-image {
+      width: 200px;
+      height: 200px;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 50%;
+      position: relative;
+  }
+  
+  .masked-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+  }
+  
+  .masked-image:hover img {
+      transform: scale(1.1);
+  }
+  .micro-animation {
+    width: 100px;
+    height: 100px;
+    background-color: #e74c3c;
+    border-radius: 50%;
+    margin: 20px auto;
+    animation: pulse 1.5s infinite alternate;
+}
+.styled-button {
+  background-color: #9b59b6;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.styled-button:hover {
+  background-color: #8e44ad;
+  transform: translateY(-2px);
+}
+
+.styled-button:active {
+  transform: translateY(0);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+    /* Задаем позиции и высоты через JavaScript (смотрите achievements.js) */
+      .distortion-container:before {
+        content: ''; /* Обязательно для псевдоэлемента */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('noise.png'); /* Текстура шума */
+        opacity: 0; /* Скрываем текстуру по умолчанию */
+        transition: opacity 0.3s ease-in-out; /* Плавный переход при наведении */
+        mix-blend-mode: color-dodge; /* Важный параметр!  Определяет, как текстура смешивается с изображением */
+        pointer-events: none; /* Чтобы псевдоэлемент не перехватывал события мыши */
+      }
+      
+      .distortion-container:hover:before {
+        opacity: 0.2; /* Регулируйте видимость шума */
+      }
+      .shader-effect {
+        font-size: 2em;
+        color: white;
+        text-shadow: 0 0 10px blue, 0 0 10px rgb(215, 145, 255); /* Имитация свечения */
+        background-color: rgb(24, 0, 90);
+        padding: 20px;
+        border-radius: 10px;
+      }
+      .loader {
+        border: 8px solid #62a7e08a; /* Светло-серый цвет границы */
+        border-top: 16px solid var(--primary-color); /* Синий цвет верхней границы */
+        border-radius: 50%; /* Делаем круг */
+        width:  60px;
+        height: 60px;
+        animation: spin 1.5s linear infinite; /* Применяем анимацию spin */
+      }
+      .carousel {
+        width: 250px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+      }
+  
+      .carousel-inner {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+  
+      .carousel-item {
+        width: 100%;
+        flex-shrink: 0; /* Важно для корректной работы карусели */
+      }
+  
+      .carousel-item img {
+        width: 100%;
+        height: auto;
+      }
+  
+      .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(114, 13, 145, 0.5);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+      }
+  
+      .carousel-control.prev {
+        left: 10px;
+      }
+  
+      .carousel-control.next {
+        right: 10px;
+      }
+  
+      .carousel-control:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+      body {
+        perspective: 800px; /* Важно! Создаем перспективу для 3D */
+    }
+    .filters {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    
+    .filters button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #f0f0f0;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+    
+    .filters button.active {
+      background-color: #ddd;
+    }
+    
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+    }
+    
+    .gallery-item {
+      width: 200px;
+      height: auto;
+      border: 1px solid #ccc;
+      padding: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+    }
+    
+    .gallery-item.hidden {
+      display: none;
+    }
+    .gallery {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    
+    .gallery-item {
+      width: 200px;
+      height: 150px;
+      overflow: hidden;
+      transform-style: preserve-3d; /*  Включаем 3D для дочерних элементов */
+      transition: transform 0.5s ease;
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .gallery-item:hover {
+      transform: rotateY(30deg); /* Поворот по оси Y */
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.2); /* Увеличение изображения */
+    }
+      .gallery {
+        display: flex; /* Выстраиваем элементы в линию */
+        justify-content: center; /* Центрируем по горизонтали */
+        align-items: center; /* Центрируем по вертикали */
+        gap: 20px; /* Расстояние между фотками */
+        padding: 20px;
+      }
+      
+      .gallery-item {
+        width: 150px; /* Размер круга */
+        height: 250px; /* Размер круга */
+        border-radius: 50%; /* Делаем круглым */
+        overflow: hidden; /* Обрезаем всё, что выходит за границы круга */
+        transition: all 0.3s ease; /* Плавный переход */
+      }
+      
+      .gallery-item img {
+        width: 100%;
+        height: 150%;
+        object-fit: cover; /*  Обрезает/масштабирует изображение, чтобы заполнить контейнер */
+      }
+      
+      .gallery-item:hover {
+        width: 250px; /* Размер при наведении */
+        height: 450px; /* Размер при наведении */
+        border-radius: 0; /* Снимаем скругление */
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); } /* Начальное состояние: без вращения */
+        100% { transform: rotate(360deg); } /* Конечное состояние: полный оборот */
+      }
+      body {
+        cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><text x="0" y="20" style="font-size:20px;">❄️</text></svg>') 12 12, auto; /* Снежинка по умолчанию */
+      }
+      
+      body.star-cursor {
+        cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><text x="0" y="20" style="font-size:20px;">⭐</text></svg>') 12 12, auto;
+      }
+      
+      body.skate-cursor {
+        cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><text x="0" y="20" style="font-size:20px;">⛸️</text></svg>') 12 12, auto;
+      }
+      
+      .border-button {
+        position: relative;
+        padding: 15px 30px;
+        border: 10px solid var(--primary-color);
+        background-color: transparent;
+        color: var(--primary-color);
+        cursor: pointer;
+        overflow: hidden;
+        transition: color 0.3s ease;
+      }
+      
+      .border-button:hover {
+        color: rgb(255, 255, 255); /* Изменяем цвет текста при наведении */
+      }
+      
+      .border-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--primary-color);
+        z-index: -1;
+        transform: scaleX(0); /* Сжимаем псевдоэлемент по горизонтали */
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+      
+      .border-button:hover::before {
+        transform: scaleX(1); /* Растягиваем псевдоэлемент при наведении */
+      }
+      
