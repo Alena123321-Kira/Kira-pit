@@ -409,13 +409,7 @@ nav a {
   50% { transform: translateY(-10px); } /* Меняйте значение по желанию */
   100% { transform: translateY(0); }
 }
-.video-text {
-  font-size: 5em;
-  color: #f50707;
-  background: url(Первенство_Астраханской_области_по_ФКК_1_й_юнoшecкий_разряд\,_дeвoчки.mp4) repeat;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+
 #myCanvas {
   width: 40%; /* Занимает 50% ширины родительского элемента */
   height: auto; /* Сохраняет пропорции */
