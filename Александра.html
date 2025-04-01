@@ -6,12 +6,20 @@
     <title>Александра Ковалевская</title>
   <title>Фигурное Катание: Александра Ковалевская</title>
   <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+
+
   <link rel="stylesheet" href="style.css">
   </head>
 <body>
   <header>
-    <h1> <font face="Monotype Corsiva"size="+5">  Александра Ковалевская </font></div></h1>
-    <h2> <font face="Monotype Corsiva"size="+3.8">Фигурное катание</font></h2>
+    <h1> <font face="Monotype Corsiva"size="+5" class="glitch" data-text="Магия Льда">  Александра Ковалевская </font></div></h1>
+    <h2> <font face="Monotype Corsiva"size="+3.8"><p class="hero-subtitle typing-text" data-text="Погрузитесь в мир фигурного катания">Фигурное катание</font></p></h2>
   </header>
   <header>
     <nav>
@@ -37,7 +45,65 @@
                   <div class="modal-content">
                     <span id="close-modal">&times;</span>
                       <h2>Пожелание</h2>
-                      <p class="glass-button">Выпрямись!!!<br>Улыбнись!!!<br>Хорошего настроения и приятного чтения💪⛸✨<br></p>
+                      <script>
+    const modal = document.getElementById("modal");
+    const openModalButton = document.getElementById("open-modal");
+    const closeModalButton = document.getElementById("close-modal");
+    const wishText = document.getElementById("wish-text"); // Получаем элемент, где будет пожелание
+
+    // Массив с пожеланиями
+    const wishes = [
+        "Выпрямись!!!\nУлыбнись!!!\nХорошего настроения и приятного чтения💪⛸✨",
+        "Пусть каждый день будет наполнен вдохновением и радостью!",
+        "Верь в себя и свои мечты, и все обязательно получится!",
+        "Наслаждайся каждым моментом жизни!",
+        "Сегодня твой день! Сделай его незабываемым!",
+        // Добавьте сюда остальные ваши пожелания (до 30-50 или больше)
+        "Удачи во всех начинаниях!",
+        "Пусть удача сопутствует тебе на льду!",
+        "Катайся с душой и вдохновляй других!",
+        "Твори, мечтай, побеждай!",
+        "Сияй ярче звезды на льду!",
+        "Пусть музыка ведет тебя к новым вершинам!",
+        "Каждый день - это новый шанс стать лучше!",
+        "Будь смелой, будь сильной, будь собой!",
+        "Твой талант безграничен!",
+        "Верь в волшебство фигурного катания!",
+        "Пусть каждый прыжок будет успешным!",
+        "Твоя грация завораживает!",
+        "Не бойся падений, они делают тебя сильнее!",
+        "Пусть твой танец на льду расскажет историю!",
+        "Твоя страсть к фигурному катанию вдохновляет!",
+        "Катайся с удовольствием!",
+        "Пусть каждый прокат будет лучшим!",
+        "Твои тренировки принесут плоды!",
+        "Верь в свою мечту и иди к ней!",
+        "Будь лучшей версией себя!",
+        "Твоя улыбка освещает лед!",
+        "Пусть вдохновение никогда не покидает тебя!",
+        "Твоя сила воли восхищает!",
+        "Верь в свои возможности!",
+        "У тебя все получится!"
+
+    ];
+
+    openModalButton.addEventListener("click", () => {
+        // Выбираем случайное пожелание из массива
+        const randomIndex = Math.floor(Math.random() * wishes.length);
+        wishText.textContent = wishes[randomIndex]; // Отображаем пожелание в модальном окне
+        modal.style.display = "block";
+    });
+
+    closeModalButton.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+
+    window.addEventListener("click", (event) => {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
+</script>
                     </div>
                   </div>
               </div>
@@ -51,10 +117,7 @@
       <button class="border-button" style="width: 70px; height: 40px; background-color:rgb(202, 163, 252)" onclick="changeCursor('skate')">⛸</button>
       <button class="border-button" style="width: 70px; height: 40px; background-color:rgb(120, 149, 243)" onclick="changeCursor('snowflake')">❄</button>
   </div>
-        <div class="masked-image" > <div class="micro-animation">
-            <img src="https://sun9-44.userapi.com/impf/f3FmmZaVfjhuvehDjfxPPJcIPPy1ayO9Qy9Z_A/pwpexWjvfLI.jpg?size=604x315&quality=96&sign=09c59b0da8c045bdc3a35fc140172e54&type=album" alt="Маска">
-        </div>
-      </div>
+       
 
       
   <div id="content">
@@ -116,6 +179,8 @@
       }
     </style><h1 class="glitch-text" data-text="И вообще,спорт-это очень важно!!!"> <div class="shader-effect">И вообще,спорт-это важно!!!</h1></p></marquee></div> </div>
     <marquee><img src="https://www.gifki.org/data/media/285/konki-animatsionnaya-kartinka-0016.gif"></marquee>
+    <marquee><img src="https://www.gifki.org/data/media/1845/figurnoe-katanie-animatsionnaya-kartinka-0006.gif"></marquee>
+    <marquee><img src="https://www.gifki.org/data/media/1845/figurnoe-katanie-animatsionnaya-kartinka-0003.gif"></marquee>
     
     <div class="slideshow">
       <div class="slide active"><img src="https://sun9-77.userapi.com/s/v1/ig2/cSRgkvF191Mgb7ECwSN6-9HqkY6nct_z4bHxmTf7UopeTo7oB17re7ctQa0WwCcgMYf37su9lFgNBBo_J282p4Im.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960&from=bu&u=x8JnjJSIqzPphEphtZh8wCFxPYWuqJzdKP13SRYlWT4&cs=807x605" alt="капке"></div>
@@ -139,15 +204,63 @@
         Официальный сайт учреждения: <a href "http://scp6.reduit-company.ru/">http://scp6.reduit-company.ru/</a>
        </address>
        <button id="starButton">Запустить звезду!</button>
-       <a href="javascript:void(0)">
-        <span>HOVER ME</span>
-        <div class="wave"></div>
-      </a>
+       
       
 
       </section>
     
     
+      <!-- Gallery Section -->
+      <section id="gallery" class="gallery">
+        <h2>Галерея</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="Фото6.jpg" alt="Фото 1">
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Фото 1</h3>
+                        <p>Описание фото 1</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="Фото5.jpg" alt="Фото 2">
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Фото 2</h3>
+                        <p>Описание фото 2</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="Фото4.jpg" alt="Фото 3">
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Фото 3</h3>
+                        <p>Описание фото 3</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="Фото5.jpg" alt="Фото 4">
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Фото 4</h3>
+                        <p>Описание фото 4</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
     
      
   
@@ -158,18 +271,32 @@
         <div class="bar" data-value="70" data-label="Апрель"></div>
     </div>
 
-      <ul>
-        <li>[Достижение 1]</li>
-        <li>[Достижение 2]</li>
-        <li>[Достижение 3]</li>
-      </ul>
+    <section id="achievements" class="achievements-section">
+      <div class="container">
+        <h2>Достижения</h2>
+        <div class="timeline">
+          <div class="timeline-item" data-year="2022">
+            <h3>Чемпионат России (Юниоры)</h3>
+            <p>1-е место</p>
+          </div>
+          <div class="timeline-item" data-year="2023">
+            <h3>Международный турнир</h3>
+            <p>2-е место</p>
+          </div>
+          <!-- More timeline items -->
+        </div>
+        <div class="charts">
+          <!-- Add charts here (e.g., using Chart.js) -->
+        </div>
+      </div>
+    </section>
       <button class="click-reveal-button"center style="width: 200px; height: 50px; background-color:rgb(128, 160, 228)">А так же...</button>
       <head>
       <style>
         .achievement {
           width: 100px;
           height: 100px;
-          background-color: #eee;
+          background-color: #0059ff;
           border: 1px solid #ccc;
           margin: 10px;
           text-align: center;
@@ -204,10 +331,8 @@
         });
       </script>
     
-      <div class="hidden-text">Секретный текст</div>
-      <svg width="500" height="500">
-        <image id="shape" href="Фото3.jpg" width="500" height="500" >
-      </svg>
+      
+     
       
       
       <h1 class="wavy-text">
@@ -401,8 +526,7 @@
         <button class="carousel-control prev">⬅</button>
         <button class="carousel-control next">➡</button>
       </div>
-      
-  
+     
       <div class="filters">
         <button data-filter="all">Все</button>
         <button data-filter="landscapes">Пейзажи</button>
