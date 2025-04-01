@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../123"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"javascript.validate.enable": false,
+		"liveServer.settings.port": 5501,
+		"ecsstractor_port.add_comment": false,
+		"ecsstractor_port.empty_line_before_nested_selector": false,
+		"liveServer.settings.multiRootWorkspaceName": "ццц"
+	}
+}

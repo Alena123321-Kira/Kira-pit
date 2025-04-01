@@ -1,3 +1,78 @@
+:root {
+  --lavender: #ffffff00;
+  --ice-blue: #97fcff;
+  --frost-purple: #D8BFD8;
+  --crystal-shadow: rgba(176, 196, 222, 0.3);
+  --text-color: #2F4F4F;
+}
+
+/* Анимации */
+@keyframes snow-spin {
+  0% { transform: rotate(0) scale(0.8); opacity: 0; }
+  100% { transform: rotate(720deg) scale(1); opacity: 1; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+/* Preloader */
+
+
+
+
+/* Бегущая строка */
+.marquee {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: var(--ice-blue);
+  padding: 10px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.marquee span {
+  display: inline-block;
+  animation: marquee 20s linear infinite;
+}
+
+/* Плавающее меню */
+.crystal-nav {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000; /* Увеличиваем z-index */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease-out;
+  will-change: transform; /* Оптимизация анимации */
+}
+
+/* Стили для пунктов меню остаются прежними */
+.menu-item {
+  width: 120px;
+  height: 100px;
+  margin: 15px 40;
+  background: linear-gradient(45deg, var(--lavender), var(--ice-blue));
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 0.9rem;
+  filter: drop-shadow(0 0 5px var(--crystal-shadow));
+}
+
+.menu-item:hover {
+  transform: scale(1.2) rotate(15deg);
+  filter: drop-shadow(0 0 15px var(--frost-purple));
+}
 body {
     font-family: sans-serif;
     margin: 0;
@@ -37,16 +112,19 @@ body {
 
   .modal-content {
     background-color: rgb(171, 120, 238);
-    padding: 20px;
-    border-radius: 5px;
+    padding: 30px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
     position: relative;
   }
 
    .modal-content span {
      position: absolute;
      top: 10px;
-     right: 10px;
-     font-size: 20px;
+     right: 15px;
+     font-size: 24px;
      cursor: pointer;
    }
    body {
@@ -170,7 +248,7 @@ nav a {
 }
   .parallax-container {
     position: relative;
-    background-image: url("https://avatars.mds.yandex.net/i?id=f2f068e89e0f2538ef07f62501d53d8d_l-7016539-images-thumbs&n=13");
+    background-image: url("Фото6.jpg");
     height: 100vh; /* Высота контейнера */
     background-attachment: fixed;
     background-position: center;
@@ -894,6 +972,157 @@ nav a {
       }
       body {
         perspective: 800px; /* Важно! Создаем перспективу для 3D */
+        .lightbox-gallery {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 15px;
+          padding: 20px;
+        }
+        
+        .lightbox-gallery img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .lightbox-gallery img:hover {
+          transform: scale(2.10000);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        
+        
+        .lightbox-content {
+          max-width: 90vw;
+          max-height: 90vw;
+          object-fit: contain;
+          border-radius: 5px;
+          animation: zoomIn 0.3s;
+        }
+        
+        .close {
+          position: absolute;
+          top: 20px;
+          right: 30px;
+          color: white;
+          font-size: 35px;
+          cursor: pointer;
+        }
+        
+        @keyframes zoomIn {
+          from { transform: scale(0.8); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
+    }
+    /* Основной контейнер */
+.film-gallery {
+  position: relative;
+  background: #000;
+  padding: 40px 0; /* Отступы для перфораций */
+  overflow-x: auto; /* Горизонтальная прокрутка */
+  white-space: nowrap;
+}
+
+/* Лента с кадрами */
+.film-strip {
+  display: inline-block;
+  padding: 0 20px;
+}
+
+/* Отдельный кадр */
+.film-frame {
+  display: inline-block;
+  width: 250px;
+  height: 180px;
+  margin: 0 15px;
+  border: 3px solid #000000;
+  box-shadow: 0 0 0 5px #a06a06; /* Толстая рамка */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Изображение внутри кадра */
+.film-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Перфорации (дырочки на плёнке) */
+.film-perforations-top,
+.film-perforations-bottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: repeating-linear-gradient(
+    to right,
+    #644b06 0px,
+    #a06b09 5px,
+    transparent 5px,
+    transparent 25px
+  );
+}
+
+.film-perforations-top {
+  top: 10px;
+}
+
+.film-perforations-bottom {
+  bottom: 10px;
+}
+
+/* Полоски по бокам (опционально) */
+.film-strip::before,
+.film-strip::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 20px;
+  background: linear-gradient(to right, #fac42e, transparent);
+  z-index: 2;
+}
+.film-gallery {
+  box-shadow: 0 10px 20px rgba(190, 125, 2, 0.5);
+}
+.film-frame::after {
+  content: "35mm";
+  position: absolute;
+  bottom: -25px;
+  left: 10px;
+  color: #fff;
+  font-size: 12px;
+}
+.film-strip::after {
+  right: 0;
+  background: linear-gradient(to left, #d4ab38, transparent);
+}
+    .infinite-gallery {
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    
+    .gallery-track {
+      display: inline-block;
+      animation: scroll 20s linear infinite;
+    }
+    
+    .gallery-track img {
+      display: inline-block;
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      margin-right: 15px;
+      border-radius: 8px;
+    }
+    
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
     .filters {
       display: flex;
@@ -1122,4 +1351,190 @@ nav a {
           transform: translate(-50%,-75%) rotate(360deg);
         }
       }
-      
+      /* Gallery Section */
+.gallery {
+  padding: 50px 0;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+.gallery h2 {
+  margin-bottom: 30px;
+}
+.flip-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr); /* 3 карточки в ряд */
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.flip-card {
+  perspective: 1000px;
+  height: 300px;
+  width: 100%; /* Занимает всю ширину ячейки сетки */
+}
+
+/* Остальные стили (flip-card-inner, front, back) без изменений */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 1000px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.flip-card:hover {
+  filter: drop-shadow(0 0 15px rgba(106, 17, 203, 0.7));
+}.flip-card:nth-child(odd) .flip-card-back {
+  background: linear-gradient(45deg, #2575fc, #6a11cb);
+}.flip-card-back h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+.flip-card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flip-card-back {
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  transform: rotateY(180deg);
+  text-align: center;
+}
+      /* Achievements Section */
+.achievements-section {
+  background-color: #f4f4f4;
+  padding: 50px 0;
+}
+
+.timeline {
+  position: absolute;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: #ddd;
+  margin-left: -1px;
+}
+
+.timeline-item {
+  position: absolute;
+  margin-bottom: 30px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.timeline-item h3 {
+  margin-top: 0;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.timeline-item p {
+  margin-top: 5px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-item:nth-child(odd) {
+  margin-left: 50%;
+  padding-left: 30px;
+}
+
+.timeline-item:nth-child(odd)::before {
+  left: 0;
+  transform: translateX(-50%);
+}
+
+.timeline-item:nth-child(odd) h3,
+.timeline-item:nth-child(odd) p {
+  text-align: left;
+}
+
+.timeline-item:nth-child(even) {
+  margin-right: 50%;
+  padding-right: 30px;
+}
+
+.timeline-item:nth-child(even) h3,
+.timeline-item:nth-child(even) p {
+  text-align: right;
+}
+
+/* Gallery Section */
+.gallery-section {
+  background-color: #fff;
+  padding: 50px 0;
+}
+
+.swiper-container {
+  width: 100%;
+  height: 400px;
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--primary-color);
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--primary-color);
+}
+   

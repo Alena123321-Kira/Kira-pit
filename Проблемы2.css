@@ -1,0 +1,402 @@
+ss
+/* Общие стили */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8; /* Светло-серый фон */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Шапка */
+header {
+    background-color: #f0f0f0; /* Светло-серый фон шапки */
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav .logo {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #664d03;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #664d03;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #a3873a;
+}
+
+/* Секция Hero (Введение) */
+.hero {
+    background-color: #f5e8c7; /* Светло-желтый фон */
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    color: #664d03;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    color: #777;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #a3873a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #664d03;
+}
+
+/* Общие стили для секций */
+.section {
+    padding: 80px 0;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section h2 {
+    font-size: 2em;
+    color: #664d03;
+    margin-bottom: 30px;
+}
+
+/* Секция "Проблемы" */
+.problem-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    color: #664d03;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #777;
+}
+
+.card-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Секция "Решения" */
+.solution-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.solution-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.solution-item:hover {
+    transform: translateY(-5px);
+}
+
+.solution-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.solution-item h3 {
+    color: #664d03;
+    margin-bottom: 10px;
+}
+
+.solution-item p {
+    color: #777;
+}
+
+/* Секция "Статистика" */
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.stat-item h3 {
+    color: #664d03;
+    margin-bottom: 10px;
+}
+
+.stat-item p {
+    color: #777;
+    font-size: 1.2em;
+}
+
+.stats-source {
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 20px;
+}
+
+/* Секция "Тест" */
+.test-container {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.test-container ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+}
+
+.test-container li {
+    margin-bottom: 15px;
+}
+
+.test-container p {
+    color: #777;
+}
+
+.test-container label {
+    display: block;
+    margin-top: 5px;
+}
+
+#calculate-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #a3873a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+#calculate-button:hover {
+    background-color: #664d03;
+}
+
+#result {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #664d03;
+}
+
+/* Секция "Обратная связь" */
+.feedback-form {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.feedback-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #664d03;
+}
+
+.feedback-form input[type="text"],
+.feedback-form input[type="email"],
+.feedback-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.feedback-form textarea {
+    resize: vertical;
+}
+
+.feedback-form button[type="submit"] {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #a3873a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.feedback-form button[type="submit"]:hover {
+    background-color: #664d03;
+}
+
+#form-message {
+    margin-top: 10px;
+    font-weight: bold;
+    color: green;
+}
+
+/* Секция "Об авторе" */
+.author-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+/* Футер */
+footer {
+    background-color: #f0f0f0;
+    padding: 20px 0;
+    text-align: center;
+    color: #777;
+    font-size: 0.9em;
+}
+
+/* Анимации */
+.card, .solution-item {
+    transition: transform 0.3s ease;
+}
+
+.card:hover, .solution-item:hover {
+    transform: translateY(-5px);
+}
+
+/*Медиа запросы*/
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul {
+        margin-top: 10px;
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    .problem-cards, .solution-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card, .solution-item {
+        width: 80%;
+    }
+
+    .stat-item {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .hero {
+        padding: 50px 0;
+    }
+
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+}

@@ -29,39 +29,168 @@ document.querySelectorAll('.accordion-header').forEach(header => {
      this.parentElement.classList.toggle('active');
  });
 });
+ // Плавная прокрутка
+ document.querySelectorAll('.hex-btn').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    document.querySelector(targetId).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+document.querySelectorAll('.menu-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    document.querySelector(targetId).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
 
+// Анимация при скролле
+window.addEventListener('scroll', () => {
+  const menu = document.querySelector('.hexagon-menu');
+  if (window.scrollY > 100) {
+    menu.style.opacity = '1';
+  }
+});
 const openModalBtn = document.getElementById('open-modal');
 const modal = document.getElementById('modal');
 const closeModalBtn = document.getElementById('close-modal');
+const wishText = document.getElementById('wish-text');
 
+const wishes = [
+  "Выпрямись!!!Улыбнись!!!Хорошего настроения и приятного чтения😊",
+  "Пусть каждый день будет наполнен вдохновением и радостью!💖",
+  "Верь в себя и свои мечты, и все обязательно получится!🔥",
+  "Наслаждайся каждым моментом жизни!💫",
+    "Лёд ждёт твоего великолепия! Покажи им, на что ты способна! ⛸💫",
+    "Каждый прыжок — шаг к мечте. Лети смело! ✨",
+    "Пусть лёд будет мягким, а вращения — безупречными! 🌟",
+    "Ты и музыка — одно целое. Танцуй, как никто другой! 🎶",
+    "Сегодня твой день! Оставь след на этом льду! ❄️",
+    "Помни: даже чемпионы начинали с первого шага. Ты на верном пути! 🏆",
+    "Пусть сегодня каждая тройка получится чистой! 🔥",
+    "Улыбнись — и лёд растает от твоего тепла! 😊",
+    "Ты — воплощение грации и силы. Не сомневайся в себе! 💪",
+    "Лёд — твой холст. Нарисуй на нём шедевр! 🎨",
+    "Пусть сегодняшняя тренировка принесёт новые рекорды! 🚀",
+    "Ты создана для больших побед. Вперёд! 🌠",
+    "Каждый падение — шанс подняться ещё выше. Не останавливайся! ⛸",
+    "Пусть твои спирали завораживают, а прыжки восхищают! 💫",
+    "Сегодня ты почувствуешь, как лёд становится твоим другом! ❄️",
+    "Твой труд превращается в волшебство. Продолжай! ✨",
+    "Пусть судьи увидят сегодня твой лучший прокат! 🌟",
+    "Ты — звезда, которая светит даже без софитов! 🌌",
+    "Верь в себя, и зрители поверят в тебя! 💖",
+    "Сегодня твой выходной? Нет, выходной у льда — от твоих скоростей! 😉",
+    "Пусть сегодня каждая дорожка шагов будет идеальной! 🏅",
+    "Ты — буря эмоций на льду. Покажи им всё! 🌪️",
+    "Лёд боится только тех, кто не выходит на тренировку. Ты не из таких! ❄️",
+    "Пусть сегодняшний прокат запомнится как самый вдохновляющий! 🌟",
+    "Ты — огонь, а лёд — твоя стихия. Гори ярче! 🔥",
+    "Помни: даже лутц когда-то был сложным. Ты справишься! 💫",
+    "Сегодня ты сделаешь то, что вчера казалось невозможным! 🚀",
+    "Пусть твой каскад будет чётким, как алмаз! 💎",
+    "Ты — воплощение элегантности. Неси это в мир! 🦢",
+    "Лёд чувствует твою страсть. Отдай ему всё! ❤️",
+    "Сегодня ты будешь лучше, чем вчера. Это главное! 🌱",
+    "Пусть твои вращения закружат всех вокруг! 🌪️",
+    "Ты — автор своей истории. Напиши сегодня красивую главу! 📖",
+    "Помни: даже олимпийские чемпионы когда-то боялись первого прыжка. Ты не одна! ⛸",
+    "Пусть сегодня музыка поведёт тебя за собой! 🎵",
+    "Ты — сила. Ты — грация. Ты — фигуристка! 💃",
+    "Сегодня лёд станет твоим зеркалом — пусть он отражает только лучшее! ✨",
+    "Пусть твой Axel будет таким же ярким, как твоя улыбка! 😊",
+    "Ты не просто скользишь — ты создаёшь искусство! 🎭",
+    "Сегодня ты почувствуешь: лёд — это твой дом. 🏠",
+    "Пусть сегодняшний прокат принесёт тебе радость, а не просто баллы! 🌈",
+    "Ты — вдохновение для тех, кто ещё только мечтает выйти на лёд. 💫",
+    "Помни: даже если не всё получится — ты уже победила, потому что стараешься! 💪",
+    "Пусть твоя программа расскажет историю, которую запомнят все! 📜",
+    "Ты — волшебница, превращающая лёд в эмоции. ✨",
+    "Сегодня ты напомнишь себе, почему начала кататься. ❤️⛸",
+    "Пусть твои пальцы чувствуют лёд, а сердце — музыку! 🎶",
+    "Ты — неповторима. Не сравнивай себя ни с кем! 🌟",
+    "Сегодня ты сделаешь шаг к мечте. Гордись этим! 🚀",
+    "Фигурное катание — это не спорт. Это твоя жизнь. Наслаждайся! ⛸💖"
+  ];
+  // ... остальные ваши пожелания ...
+
+function getRandomWish() {
+  const randomIndex = Math.floor(Math.random() * wishes.length);
+  return wishes[randomIndex];
+}
 openModalBtn.addEventListener('click', () => {
-   modal.classList.add('active');
+  wishText.textContent = getRandomWish(); // Устанавливаем случайное пожелание
+  modal.style.display = 'flex'; // Показываем модальное окно
 });
+
 
 closeModalBtn.addEventListener('click', () => {
-   modal.classList.remove('active');
+  modal.style.display = 'none';
 });
+
+window.addEventListener('click', (event) => {
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
+});
+
 window.addEventListener('load', () => {
   const progressBar = document.querySelector('.progress-bar');
   progressBar.style.width = '100%';
 });
+
 const wavyText = document.querySelector('.wavy-text'); /* Получаем элемент с текстом */
 wavyText.querySelectorAll('span').forEach((span, index) => { /* Для каждой буквы */
   span.style.setProperty('--index', index); /* Устанавливаем переменную --index */
 });
+
 const skaterImage = document.querySelector('#bio img');
+
 document.querySelectorAll('nav a').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href');
-      document.querySelector(targetId).scrollIntoView({
-          behavior: 'smooth'
-      });
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    document.querySelector(targetId).scrollIntoView({
+      behavior: 'smooth'
+    });
   });
 });
+document.addEventListener('mousemove', (e) => {
+  const x = e.clientX / window.innerWidth;
+  const y = e.clientY / window.innerHeight;
 
+  document.querySelectorAll('.parallax').forEach(skater => {
+    const depth = parseFloat(skater.dataset.depth);
+    const moveX = x * 100 * depth;
+    const moveY = y * 100 * depth;
+    skater.style.transform = 'translate(${moveX}px, ${moveY}px)';
+  });
+});
+function openLightbox(img) {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  lightbox.style.display = 'flex';
+  lightboxImg.src = img.src;
+}
 
-
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+}
+let currentIndex1 = 0;
+     const images = document.querySelectorAll('.lightbox-gallery img');
+     
+     function changeImage(n) {
+       currentIndex1 += n;
+       if (currentIndex1 >= images.length) currentIndex1 = 0;
+       if (currentIndex1 < 0) currentIndex1 = images.length - 1;
+       document.getElementById('lightbox-img').src = images[currentIndex1].src;
+     }
+     
 const starButton = document.getElementById('starButton');
 const starContainer = document.getElementById('starContainer');
 
@@ -90,6 +219,20 @@ skaterImage.addEventListener('mouseover', () => {
 skaterImage.addEventListener('mouseout', () => {
   skaterImage.style.transform = 'rotate(0deg)';
 });
+const filmStrip = document.querySelector('.film-strip');
+let scrollPos = 0;
+
+function autoScroll() {
+  scrollPos += 1;
+  if (scrollPos > filmStrip.scrollWidth / 2) {
+    scrollPos = 0;
+  }
+  filmStrip.style.transform = 'translateX(-${scrollPos}px)';
+  requestAnimationFrame(autoScroll);
+}
+
+// Запустить анимацию (можно отключить для ручной прокрутки)
+autoScroll();
 function setBackground() {
   const now = new Date();
   const hour = now.getHours();
@@ -320,7 +463,59 @@ toggleButton.addEventListener('click', function() {
 document.querySelectorAll('.animated-text span').forEach((span, i) => {
   span.style.setProperty('--i', i);
 });
-   
+   //Achievements:
+document.addEventListener('DOMContentLoaded', function () {
+  const achievements = [
+    { year: 2018, description: 'Начала заниматься фигурным катанием' },
+    { year: 2020, description: 'Первое место на городских соревнованиях' },
+    { year: 2022, description: 'Участие в чемпионате области' },
+    { year: 2024, description: 'Присвоение звания кандидата в мастера спорта' }
+  ];
+
+  const timeline = document.querySelector('.timeline');
+
+  achievements.forEach(achievement => {
+    const item = document.createElement('div');
+    item.classList.add('timeline-item');
+
+    const year = document.createElement('h3');
+    year.textContent = achievement.year;
+    item.appendChild(year);
+
+    const description = document.createElement('p');
+    description.textContent = achievement.description;
+    item.appendChild(description);
+
+    timeline.appendChild(item);
+  });
+});
+ // Load More Gallery
+ const loadMoreButton = document.getElementById('load-more-gallery');
+ const galleryGrid = document.querySelector('.gallery-grid');
+ let loadedImages = 4;
+ loadMoreButton.addEventListener('click', function() {
+     for (let i = 0; i < 4; i++) {
+         loadedImages++;
+         if (loadedImages > 12) {
+             loadMoreButton.style.display = 'none';
+             break;
+         }
+         const galleryItem = document.createElement('div');
+         galleryItem.classList.add('gallery-item', 'flip-card');
+         galleryItem.innerHTML = `
+             <div class="flip-card-inner">
+                 <div class="flip-card-front">
+                     <img src="img/gallery${loadedImages}.jpg" alt="Фото ${loadedImages}">
+                 </div>
+                 <div class="flip-card-back">
+                     <h3>Фото ${loadedImages}</h3>
+                                             <p>Описание фото ${loadedImages}</p>
+                 </div>
+             </div>
+         `;
+         galleryGrid.appendChild(galleryItem);
+     }
+ });
     
     
 

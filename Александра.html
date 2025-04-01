@@ -9,7 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.css">
 
 
 
@@ -21,12 +22,19 @@
     <h1> <font face="Monotype Corsiva"size="+5" class="glitch" data-text="Магия Льда">  Александра Ковалевская </font></div></h1>
     <h2> <font face="Monotype Corsiva"size="+3.8"><p class="hero-subtitle typing-text" data-text="Погрузитесь в мир фигурного катания">Фигурное катание</font></p></h2>
   </header>
+   
+ <!-- Бегущая строка -->
+ <div class="marquee">
+  <span>«Лёд — моя стихия» • Личный рекорд: 189.45 баллов • Чемпионка России 2023 •</span>
+</div>
+<!-- Плавающее меню -->
+
   <header>
-    <nav>
-        <a href="#главная"><font face="Monotype Corsiva"size="+2">Главная</font></a>
-        <a href="#Биография"><font face="Monotype Corsiva"size="+2">Биография</font></a>
-        <a href="#галерея"><font face="Monotype Corsiva"size="+2">Галерея</font></a>
-        <a href="#"><font face="Monotype Corsiva"size="+2">Контакты</font></a>
+    <nav class="main-menu">
+        <a class="menu-item" href="#главная"><font face="Monotype Corsiva"size="+2">Главная</font></a>
+        <a class="menu-item" href="#Биография"><font face="Monotype Corsiva"size="+2">Биография</font></a>
+        <a class="menu-item" href="#галерея"><font face="Monotype Corsiva"size="+2">Галерея</font></a>
+        <a class="menu-item" href="#"><font face="Monotype Corsiva"size="+2">Контакты</font></a>
     </nav>
 </header>
 <div class="scroll-indicator"></div>
@@ -39,73 +47,17 @@
         <div class="parallax-content">
             <h1><div  id="главная"><center >Александра о фигурном катании:</div></h1></center>
             <p style="font-size: 15px;"><i><h1 class="animated-text"><span><u><blockquote> <font color="#440066">"Мечты сбываются только тогда, когда ты веришь в свои силы и не боишься испытаний. Фигурное катание - это не только спорт, но и искусство, которое требует терпения, стойкости и отчаянной мотивации. Помни, что твои усилия не останутся незамеченными, и каждый шаг на льду приближает тебя к своей мечте. Не останавливайся, иди вперед и покори мир своим талантом и стойкостью! 💪⛸✨"</font></blockquote></u></span></i></p></h1>
-            
-            <center ><button class="shape-button"><button id="open-modal"  class="border-button"  center style="width: 200px; height: 50px; background-color:rgb(128, 160, 228)"> ОТКРОЙ</button></button></center >
+        <div class ="button-contaner">
+            <center ><button class="shape-button"><button id="open-modal"  class="border-button"  center style="width: 200px; height: 50px; background-color:rgb(128, 160, 228)"> ОТКРОЙ</button></button></center ></div>
               <div id="modal" class="modal">
                   <div class="modal-content">
                     <span id="close-modal">&times;</span>
                       <h2>Пожелание</h2>
-                      <script>
-    const modal = document.getElementById("modal");
-    const openModalButton = document.getElementById("open-modal");
-    const closeModalButton = document.getElementById("close-modal");
-    const wishText = document.getElementById("wish-text"); // Получаем элемент, где будет пожелание
-
-    // Массив с пожеланиями
-    const wishes = [
-        "Выпрямись!!!\nУлыбнись!!!\nХорошего настроения и приятного чтения💪⛸✨",
-        "Пусть каждый день будет наполнен вдохновением и радостью!",
-        "Верь в себя и свои мечты, и все обязательно получится!",
-        "Наслаждайся каждым моментом жизни!",
-        "Сегодня твой день! Сделай его незабываемым!",
-        // Добавьте сюда остальные ваши пожелания (до 30-50 или больше)
-        "Удачи во всех начинаниях!",
-        "Пусть удача сопутствует тебе на льду!",
-        "Катайся с душой и вдохновляй других!",
-        "Твори, мечтай, побеждай!",
-        "Сияй ярче звезды на льду!",
-        "Пусть музыка ведет тебя к новым вершинам!",
-        "Каждый день - это новый шанс стать лучше!",
-        "Будь смелой, будь сильной, будь собой!",
-        "Твой талант безграничен!",
-        "Верь в волшебство фигурного катания!",
-        "Пусть каждый прыжок будет успешным!",
-        "Твоя грация завораживает!",
-        "Не бойся падений, они делают тебя сильнее!",
-        "Пусть твой танец на льду расскажет историю!",
-        "Твоя страсть к фигурному катанию вдохновляет!",
-        "Катайся с удовольствием!",
-        "Пусть каждый прокат будет лучшим!",
-        "Твои тренировки принесут плоды!",
-        "Верь в свою мечту и иди к ней!",
-        "Будь лучшей версией себя!",
-        "Твоя улыбка освещает лед!",
-        "Пусть вдохновение никогда не покидает тебя!",
-        "Твоя сила воли восхищает!",
-        "Верь в свои возможности!",
-        "У тебя все получится!"
-
-    ];
-
-    openModalButton.addEventListener("click", () => {
-        // Выбираем случайное пожелание из массива
-        const randomIndex = Math.floor(Math.random() * wishes.length);
-        wishText.textContent = wishes[randomIndex]; // Отображаем пожелание в модальном окне
-        modal.style.display = "block";
-    });
-
-    closeModalButton.addEventListener("click", () => {
-        modal.style.display = "none";
-    });
-
-    window.addEventListener("click", (event) => {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    });
-</script>
+                      
+                      <p id="wish-text" class="glass-button"></p>
                     </div>
                   </div>
+                  
               </div>
           </div>
         </div>
@@ -178,9 +130,15 @@
         filter: url(#glitch-active);
       }
     </style><h1 class="glitch-text" data-text="И вообще,спорт-это очень важно!!!"> <div class="shader-effect">И вообще,спорт-это важно!!!</h1></p></marquee></div> </div>
-    <marquee><img src="https://www.gifki.org/data/media/285/konki-animatsionnaya-kartinka-0016.gif"></marquee>
-    <marquee><img src="https://www.gifki.org/data/media/1845/figurnoe-katanie-animatsionnaya-kartinka-0006.gif"></marquee>
-    <marquee><img src="https://www.gifki.org/data/media/1845/figurnoe-katanie-animatsionnaya-kartinka-0003.gif"></marquee>
+  
+    
+    
+    
+    
+   
+    <marquee><img src="https://www.gifki.org/data/media/285/konki-animatsionnaya-kartinka-0016.gif"class="parallax" data-depth="0.2">
+    <img src="https://www.gifki.org/data/media/1845/figurnoe-katanie-animatsionnaya-kartinka-0006.gif"class="parallax" data-depth="05">
+    <img src="https://www.gifki.org/data/media/1845/figurnoe-katanie-animatsionnaya-kartinka-0003.gif"class="parallax" data-depth="0.8"></marquee></div>
     
     <div class="slideshow">
       <div class="slide active"><img src="https://sun9-77.userapi.com/s/v1/ig2/cSRgkvF191Mgb7ECwSN6-9HqkY6nct_z4bHxmTf7UopeTo7oB17re7ctQa0WwCcgMYf37su9lFgNBBo_J282p4Im.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960&from=bu&u=x8JnjJSIqzPphEphtZh8wCFxPYWuqJzdKP13SRYlWT4&cs=807x605" alt="капке"></div>
@@ -190,7 +148,7 @@
   </div>
     <section id="bio">
       <h3><div id="Биография"></div> <center>О фигуристке</center></div></h3>
-      <p>(биография)</p>
+      <p>Александра Ковалевская – юная, но уже заявившая о себе фигуристка, чья страсть ко льду и упорство восхищают. С трех лет она посвятила себя фигурному катанию, где сразу же проявила природный талант и трудолюбие. Интенсивные тренировки (5-6 часов на льду ежедневно) в сочетании с хореографией и общефизической подготовкой позволяют Александре совершенствовать свою технику, особенно в прыжковых элементах. Её коронный элемент – шпагат на льду. Она усердно работает над ультра-си, мечтая о ярком и запоминающемся прокате. За годы тренировок у Александры сложился личный ритуал: перед каждым выступлением она касается льда ладонями, считая это своеобразной связью с "партнером", который всегда поддержит. Преодолевая травмы и трудности, Александра не теряет оптимизма и при поддержке семьи уверенно идет к своей главной цели – войти в сборную России и осуществить свою Олимпийскую мечту. Её девиз: "Лёд — моя стихия, а прыжки — свобода".</p>
       <h1 class="typing-text" data-text="Этот текст будет печататься."></h1>
       <center ><img src="https://sun9-76.userapi.com/s/v1/ig2/lJ26ypG3gPSbXFWPWfwScoNxJiGQargPfgL_GfMMoiNlUMcZmF8PsxQToZKbLZ--c1GEQw724yTyBVAdtExYgLxJ.jpg?quality=95&as=32x50,48x75,72x113,108x169,160x251,240x376,360x565,480x753,540x847,640x1004,720x1129,1080x1694&from=bu&u=NBGSVqo6AUqa8UBaH0js3D_41D5tuNlwMX8uMIumLCo&cs=514x807" alt="Саша Ковалевская" width="300"</center>
     </section>
@@ -211,56 +169,20 @@
     
     
       <!-- Gallery Section -->
-      <section id="gallery" class="gallery">
-        <h2>Галерея</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img src="Фото6.jpg" alt="Фото 1">
-                    </div>
-                    <div class="flip-card-back">
-                        <h3>Фото 1</h3>
-                        <p>Описание фото 1</p>
-                    </div>
-                </div>
+      <div class="flip-gallery">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="груша1.jpg" alt="Фигуристка">
             </div>
-            <div class="gallery-item flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img src="Фото5.jpg" alt="Фото 2">
-                    </div>
-                    <div class="flip-card-back">
-                        <h3>Фото 2</h3>
-                        <p>Описание фото 2</p>
-                    </div>
-                </div>
+            <div class="flip-card-back">
+              <h3>Момент выступления</h3>
+              <p>Чемпионат Европы 2023</p>
             </div>
-            <div class="gallery-item flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img src="Фото4.jpg" alt="Фото 3">
-                    </div>
-                    <div class="flip-card-back">
-                        <h3>Фото 3</h3>
-                        <p>Описание фото 3</p>
-                    </div>
-                </div>
-            </div>
-            <div class="gallery-item flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img src="Фото5.jpg" alt="Фото 4">
-                    </div>
-                    <div class="flip-card-back">
-                        <h3>Фото 4</h3>
-                        <p>Описание фото 4</p>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-        
-    </section>
+        <!-- Добавьте остальные карточки -->
+      </div>
     
      
   
@@ -404,8 +326,7 @@
         display: flex; /* Показываем */
       }
     </style>
-  </head>
-  <body>
+  
   
     
   
@@ -526,28 +447,153 @@
         <button class="carousel-control prev">⬅</button>
         <button class="carousel-control next">➡</button>
       </div>
-     
+      <div class="lightbox-gallery">
+        <img src="груша19.png" alt="Фигуристка" onclick="openLightbox(this)">
+        <img src="груша17.png" alt="Тренировка" onclick="openLightbox(this)">
+        <img src="груша12.png" alt="Фигуристка" onclick="openLightbox(this)">
+        <img src="груша15.png" alt="Тренировка" onclick="openLightbox(this)">
+        <!-- Добавьте остальные фото -->
+      </div>
+      <style>.fade-gallery {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+      }
+      
+      .fade-card {
+        transition: filter 0.5s, opacity 0.5s;
+      }
+      
+      .fade-gallery:hover .fade-card:not(:hover) {
+        filter: blur(2px);
+        opacity: 0.6;
+      }
+      
+      .fade-card:hover {
+        transform: scale(1.05);
+        z-index: 10;
+      }
+      </style>
+
+      <div id="lightbox" class="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" class="lightbox-content">
+      </div>
+      <div class="infinite-gallery">
+        <div class="gallery-track">
+          <img src="груша14.png" alt="">
+          <img src="груша18.png" alt="">
+          <img src="груша11.png" alt="">
+          <img src="груша17.png" alt="">
+          <img src="груша12.png" alt="">
+          <img src="груша10.png" alt="">
+          <!-- Дублируйте изображения для бесшовной прокрутки -->
+        </div>
+      </div>
       <div class="filters">
         <button data-filter="all">Все</button>
         <button data-filter="landscapes">Пейзажи</button>
         <button data-filter="portraits">Портреты</button>
         <button data-filter="animals">спорт</button>
       </div>
-    
-      <div class="gallery">
-        <div class="gallery-item" data-category="landscapes">
-          <img src="Фото2.jpg" alt="Пейзаж 1">
+      <div class="film-gallery">
+        <!-- Полоска с перфорацией -->
+        <div class="film-strip">
+          <!-- Кадры плёнки -->
+          <div class="film-frame">
+            <img src="груша9.jpg" alt="Фигуристка">
+          </div>
+          <div class="film-frame">
+            <img src="груша6.jpg" alt="Тренировка">
+          </div>
+          <!-- Добавьте больше кадров -->
         </div>
-        <div class="gallery-item" data-category="portraits">
-          <img src="Фото6.jpg" alt="Портрет 1">
+        
+        <!-- Декоративные перфорации сверху и снизу -->
+        <div class="film-perforations-top"></div>
+        <div class="film-perforations-bottom"></div>
+      </div>
+      <div class="flip-gallery">
+        <!-- Карточка 1 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="груша10.jpg" alt="Фигуристка">
+            </div>
+            <div class="flip-card-back">
+              <h3>Момент выступления</h3>
+              <p>Чемпионат Европы 2023</p>
+            </div>
+          </div>
         </div>
-        <div class="gallery-item" data-category="animals">
-          <img src="Фото2.jpg" alt="Животное 1">
+        
+        <!-- Карточка 2 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="груша11.jpg" alt="Тренировка">
+            </div>
+            <div class="flip-card-back">
+              <h3>Тренировка</h3>
+              <p>Разминка перед прокатом</p>
+            </div>
+          </div>
         </div>
-        <div class="gallery-item" data-category="landscapes">
-          <img src="Фото4.jpg" alt="Пейзаж 2">
-        </div>
-        <!-- Добавьте больше фоток -->
+        
+          <!-- Карточка 1 -->
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="груша3.jpg" alt="Фигуристка">
+              </div>
+              <div class="flip-card-back">
+                <h3>Момент выступления</h3>
+                <p>Чемпионат Европы 2023</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Карточка 2 -->
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="груша14.png" alt="Тренировка">
+              </div>
+              <div class="flip-card-back">
+                <h3>Тренировка</h3>
+                <p>Разминка перед прокатом</p>
+              </div>
+            </div>
+          </div>
+          
+         
+            <!-- Карточка 1 -->
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <img src="груша15.png" alt="Фигуристка">
+                </div>
+                <div class="flip-card-back">
+                  <h3>Момент выступления</h3>
+                  <p>Чемпионат Европы 2023</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Карточка 2 -->
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <img src="груша16.png" alt="Тренировка">
+                </div>
+                <div class="flip-card-back">
+                  <h3>Тренировка</h3>
+                  <p>Разминка перед прокатом</p>
+                </div>
+              </div>
+            </div>
+            
+           
       </div>
      
     </section>
@@ -566,7 +612,10 @@
   </footer>
 
   
- 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.js"></script>
   <script src="scrtipt2.js"></script>
   <script src="script.js"></script>
   
