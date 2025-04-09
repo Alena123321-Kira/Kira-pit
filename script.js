@@ -160,6 +160,50 @@ document.querySelectorAll('nav a').forEach(anchor => {
     });
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const pieces = document.querySelectorAll('.puzzle-piece');
+  
+  // Массив с путями к 4 разным фоновым изображениям
+  const bgImages = [
+    'груша19.png',
+    'груша8.jpg',
+    'груша9.jpg',
+    'груша4.jpg'
+  ];
+
+  pieces.forEach((piece, index) => {
+    const row = Math.floor(index / 3);
+    const col = index % 3;
+    
+    piece.style.setProperty('--row', row);
+    piece.style.setProperty('--col', col);
+    
+    // Назначаем фоновое изображение
+    piece.style.backgroundImage = 'url(${bgImages[index % 4]})';
+    
+    // Добавляем задержку для анимации
+    piece.style.transitionDelay = '${index * 0.05}s';
+  });
+});
+// Интерактивные подсказки
+document.querySelectorAll('.bio-fact').forEach(fact => {
+  fact.addEventListener('mouseenter', () => {
+    const tooltip = document.createElement('div');
+    tooltip.className = 'fact-tooltip';
+    tooltip.textContent = fact.dataset.tooltip;
+    fact.appendChild(tooltip);
+    
+    setTimeout(() => {
+      tooltip.style.opacity = '1';
+    }, 10);
+  });
+  
+  fact.addEventListener('mouseleave', () => {
+    const tooltip = fact.querySelector('.fact-tooltip');
+    if (tooltip) tooltip.remove();
+  });
+});
 document.addEventListener('mousemove', (e) => {
   const x = e.clientX / window.innerWidth;
   const y = e.clientY / window.innerHeight;
