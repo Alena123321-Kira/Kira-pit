@@ -44,40 +44,9 @@
 }
 
 /* Плавающее меню */
-.crystal-nav {
-  position: fixed;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1000; /* Увеличиваем z-index */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.3s ease-out;
-  will-change: transform; /* Оптимизация анимации */
-}
 
-/* Стили для пунктов меню остаются прежними */
-.menu-item {
-  width: 120px;
-  height: 100px;
-  margin: 15px 40;
-  background: linear-gradient(45deg, var(--lavender), var(--ice-blue));
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  cursor: pointer;
-  transition: all 0.3s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 0.9rem;
-  filter: drop-shadow(0 0 5px var(--crystal-shadow));
-}
 
-.menu-item:hover {
-  transform: scale(1.2) rotate(15deg);
-  filter: drop-shadow(0 0 15px var(--frost-purple));
-}
+
 body {
     font-family: sans-serif;
     margin: 0;
@@ -1669,53 +1638,7 @@ nav a {
   border-radius: 20px;
   overflow: hidden;
 }
-.bio-photo-container {
-  position: relative;
-  width: 300px;
-  height: 400px;
-  margin: 0 auto 30px;
-}
 
-.photo-puzzle {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  z-index: 2;
-}
-
-.puzzle-piece {
-  background: rgba(255,255,255,0.7);
-  border: 2px solid #fff;
-  transition: 
-    transform 0.6s cubic-bezier(0.5, 0, 0.5, 1),
-    opacity 0.4s;
-  transform: 
-    translateX(calc(-10px * var(--x)))
-    translateY(calc(-15px * var(--y)));
-  opacity: 0;
-}
-
-.bio-photo-container:hover .puzzle-piece {
-  transform: translate(0);
-  opacity: 1;
-}
-
-.bio-photo {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.9);
-  transition: filter 0.5s;
-  z-index: 1;
-}
-
-.bio-photo-container:hover .bio-photo {
-  filter: brightness(1.1) contrast(1.05);
-}
 .ice-title {
   font-size: 2.5rem;
   margin-bottom: 30px;
@@ -1730,49 +1653,8 @@ nav a {
   animation: textGlow 3s infinite alternate;
 }
 
-/* Анимация фото */
-.photo-container {
-  perspective: 1000px;
-  display: inline-block;
-}
 
-.bio-photo {
-  width: 300px;
-  height: 400px;
-  object-fit: cover;
-  border-radius: 15px;
-  transition: all 1s;
-  transform-style: preserve-3d;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
 
-.bio-photo:hover {
-  transform: 
-    rotateY(calc(var(--rotate-deg, 15deg) * 2)) 
-    scale(1.05);
-  filter: 
-    drop-shadow(0 0 15px rgba(106, 17, 203, 0.7))
-    brightness(1.1);
-}
-
-/* Ледяной оверлей */
-.ice-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('https://example.com/ice-texture.png') center/cover,
-  linear-gradient(135deg, rgba(100,200,255,0.03) 0%, rgba(255,255,255,0.05) 100%);
-pointer-events: none;
-mix-blend-mode: overlay;
-opacity: 0.15;
-z-index: 100;
-}
-
-.photo-container:hover .ice-overlay {
-  opacity: 1;
-}
 
 /* Анимации */
 @keyframes textGlow {
