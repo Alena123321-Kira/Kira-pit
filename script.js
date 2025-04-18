@@ -161,60 +161,7 @@ document.querySelectorAll('nav a').forEach(anchor => {
   });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const pieces = document.querySelectorAll('.puzzle-piece');
-  
-  // Массив с путями к 4 разным фоновым изображениям
-  const bgImages = [
-    'груша19.png',
-    'груша8.jpg',
-    'груша9.jpg',
-    'груша4.jpg'
-  ];
 
-  pieces.forEach((piece, index) => {
-    const row = Math.floor(index / 3);
-    const col = index % 3;
-    
-    piece.style.setProperty('--row', row);
-    piece.style.setProperty('--col', col);
-    
-    // Назначаем фоновое изображение
-    piece.style.backgroundImage = 'url(${bgImages[index % 4]})';
-    
-    // Добавляем задержку для анимации
-    piece.style.transitionDelay = '${index * 0.05}s';
-  });
-});
-// Интерактивные подсказки
-document.querySelectorAll('.bio-fact').forEach(fact => {
-  fact.addEventListener('mouseenter', () => {
-    const tooltip = document.createElement('div');
-    tooltip.className = 'fact-tooltip';
-    tooltip.textContent = fact.dataset.tooltip;
-    fact.appendChild(tooltip);
-    
-    setTimeout(() => {
-      tooltip.style.opacity = '1';
-    }, 10);
-  });
-  
-  fact.addEventListener('mouseleave', () => {
-    const tooltip = fact.querySelector('.fact-tooltip');
-    if (tooltip) tooltip.remove();
-  });
-});
-document.addEventListener('mousemove', (e) => {
-  const x = e.clientX / window.innerWidth;
-  const y = e.clientY / window.innerHeight;
-
-  document.querySelectorAll('.parallax').forEach(skater => {
-    const depth = parseFloat(skater.dataset.depth);
-    const moveX = x * 100 * depth;
-    const moveY = y * 100 * depth;
-    skater.style.transform = 'translate(${moveX}px, ${moveY}px)';
-  });
-});
 function openLightbox(img) {
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
@@ -234,7 +181,45 @@ let currentIndex1 = 0;
        if (currentIndex1 < 0) currentIndex1 = images.length - 1;
        document.getElementById('lightbox-img').src = images[currentIndex1].src;
      }
-     
+ // Анимация появления карточек
+document.querySelectorAll('.history-card').forEach((card, index) => {
+  gsap.from(card, {
+    scrollTrigger: {
+      trigger: card,
+      start: "top 80%"
+    },
+    opacity: 0,
+    y: 50,
+    duration: 0.8,
+    delay: index * 0.2
+  });
+});
+
+// Эффект для списка дисциплин
+document.querySelectorAll('.disciplines-list li').forEach(item => {
+  item.addEventListener('mouseenter', () => {
+    gsap.to(item, {
+      x: 10,
+      duration: 0.3
+    });
+  });
+  item.addEventListener('mouseleave', () => {
+    gsap.to(item, {
+      x: 0,
+      duration: 0.3
+    });
+  });
+});
+
+// Эффект нажатия кнопки
+document.querySelector('.glass-button').addEventListener('click', function() {
+  gsap.to(this, {
+    keyframes: [
+      { scale: 0.95, duration: 0.1 },
+      { scale: 1, duration: 0.3 }
+    ]
+  });
+});    
 const starButton = document.getElementById('starButton');
 const starContainer = document.getElementById('starContainer');
 
@@ -386,6 +371,90 @@ counters.forEach(counter => {
   };
 
   updateCount();
+});
+// Анимация появления элементов
+gsap.utils.toArray(".timeline-event").forEach((event, i) => {
+  ScrollTrigger.create({
+    trigger: event,
+    start: "top 70%",
+    onEnter: () => {
+      gsap.to(event, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out"
+      });
+      
+      // Анимация кристалла
+      gsap.from(event.querySelector(".event-ice-crystal"), {
+        scale: 0,
+        duration: 0.6,
+        delay: 0.3,
+        ease: "elastic.out(1, 0.5)"
+      });
+    }
+  });
+});
+
+// Интерактивность при наведении
+document.querySelectorAll(".timeline-event").forEach(event => {
+  event.addEventListener("mouseenter", () => {
+    const crystal = event.querySelector(".event-ice-crystal");
+    gsap.to(crystal, {
+      scale: 1.2,
+      backgroundColor: "#7b68ee",
+      duration: 0.3
+    });
+    document.querySelectorAll('.achievement-card').forEach(card => {
+      card.addEventListener('click', function() {
+        // Анимация при клике
+        gsap.to(this, {
+          scale: 0.95,
+          duration: 0.3,
+          yoyo: true,
+          repeat: 1
+        });
+        
+        // Плавная прокрутка к элементу
+        this.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+      });
+    });
+    // Показ скрытого фото
+    const photo = event.querySelector(".hidden-photo");
+    if (photo) {
+      gsap.to(photo, {
+        maxHeight: "200px",
+        duration: 0.5
+      });
+    }
+  });
+  
+  event.addEventListener("mouseleave", () => {
+    const crystal = event.querySelector(".event-ice-crystal");
+    gsap.to(crystal, {
+      scale: 1,
+      backgroundColor: "white",
+      duration: 0.3
+    });
+  });
+});
+document.querySelectorAll(".event-ice-crystal").forEach(crystal => {
+  crystal.addEventListener("click", () => {
+    gsap.to(crystal, {
+      keyframes: [
+        { scale: 1.5, duration: 0.2 },
+        { 
+          scale: 1,
+          boxShadow: "0 0 20px 5px rgba(123,104,238,0.5)",
+          duration: 0.3 
+        }
+      ]
+    });
+  });
 });
 const photoButton = document.getElementById('photoButton');
 const photoOverlay = document.getElementById('photoOverlay');

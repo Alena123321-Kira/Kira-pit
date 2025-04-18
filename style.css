@@ -304,73 +304,86 @@ nav a {
     width: 200px;
     margin: 10px;
   }
-  .puzzle-container {
+  .ice-mirror-container {
+    perspective: 1000px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .photo-wrapper {
     position: relative;
-    width: 400px;
-    height: 500px;
-    margin: 20px auto;
-    overflow: hidden;
+    transform-style: preserve-3d;
+    animation: float 6s ease-in-out infinite;
   }
   
   .main-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: opacity 0.5s;
+    border-radius: 15px;
+    border: 5px solid white;
+    box-shadow: 0 10px 30px rgba(0, 119, 182, 0.3);
+    transform: rotateY(15deg);
+    transition: transform 0.5s;
   }
   
-  .puzzle-layer {
+  .reflection {
+    position: absolute;
+    bottom: -105%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, transparent 80%);
+    transform: scaleY(-1) rotateX(50deg) translateZ(-50px);
+    opacity: 0.7;
+    filter: blur(2px);
+  }
+  
+  .snowfall {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    background: url('pngwing.com.png') repeat;
+    animation: snowfall 20s linear infinite;
+    opacity: 0.5;
+  }
+  .frost-pattern-container img {
+    transition: filter 0.5s;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  
+  .frost-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('pngwing.com\ \(1\).png');
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.7s;
+    pointer-events: none;
   }
   
-  .puzzle-piece {
-    position: relative;
-    background-size: 400px 500px;
-    background-position: 
-      calc(var(--col) * -33.33%)
-      calc(var(--row) * -25%);
-    border: 2px solid rgba(255,255,255,0.8);
-    clip-path: 
-      polygon(
-        0% 15%,
-        15% 15%,
-        15% 0%,
-        85% 0%,
-        85% 15%,
-        100% 15%,
-        100% 85%,
-        85% 85%,
-        85% 100%,
-        15% 100%,
-        15% 85%,
-        0% 85%
-      );
-    transform: 
-      scale(0.8) 
-      rotate(calc(var(--row) * 5deg - 10deg)) 
-      translateX(calc(var(--col) * 20px - 30px));
-    transition: all 0.6s cubic-bezier(0.5, 0, 0.5, 1);
+  .frost-pattern-container:hover img {
+    filter: brightness(0.9) contrast(1.1);
   }
   
-  .puzzle-container:hover .main-photo {
-    opacity: 0;
+  .frost-pattern-container:hover .frost-pattern {
+    opacity: 0.7;
+    animation: frostSpread 2s forwards;
   }
   
-  .puzzle-container:hover .puzzle-layer {
-    opacity: 1;
+  @keyframes frostSpread {
+    from { clip-path: circle(0% at 50% 50%); }
+    to { clip-path: circle(100% at 50% 50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotateY(15deg); }
+    50% { transform: translateY(-20px) rotateY(5deg); }
   }
   
-  .puzzle-container:hover .puzzle-piece {
-    transform: scale(1) rotate(0) translateX(0);
+  @keyframes snowfall {
+    from { background-position: 0 0; }
+    to { background-position: 100px 1000px; }
   }
   .progress-bar-container {
     position: fixed;
@@ -698,6 +711,232 @@ nav a {
       transform: translateX(100%);
     }
   }
+  .achievement-card {
+    position: relative;
+    width: 300px; /* Фиксированная ширина */
+    height: 400px; /* Фиксированная высота */
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(123, 104, 238, 0.2);
+  }
+  
+  .photo-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Четкое заполнение области без искажений */
+    object-position: center; /* Центрирование изображения */
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .achievements-ribbon {
+    overflow-x: auto;
+    padding: 40px 0;
+    white-space: nowrap;
+  }
+  
+  .ribbon-track {
+    display: inline-flex;
+    gap: 15px;
+    padding: 0 50px;
+  }
+  
+  .achievement-card {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    width: 280px;
+    background: white;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    vertical-align: top;
+    white-space: normal;
+  }
+  
+  .achievement-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 10px 10px 0 0;
+    filter: none; /* Важно: убираем все размытия */
+  }
+  
+  .medal-icon {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    z-index: 2;
+  }
+  
+  .ribbon-content {
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .ribbon-content h3 {
+    color: #7b68ee;
+    margin-bottom: 5px;
+    font-size: 1.5em;
+  }
+  
+  .ribbon-content .score {
+    font-weight: bold;
+    color: #2e8b57;
+  }
+  
+  .ribbon-tail {
+    position: absolute;
+    bottom: -20px;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(135deg, #7b68ee, #5f45bb);
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+  }
+  
+  /* Анимации */
+  .achievement-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .achievement-card:hover img {
+    transform: scale(1.03);
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  /* Полоса прокрутки */
+  .achievements-ribbon::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .achievements-ribbon::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #7b68ee, #a68eff);
+    border-radius: 4px;
+  }
+  .achievement-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    padding: 15px;
+    transform: translateY(100%);
+    transition: transform 0.5s ease;
+    color: white;
+  }
+  
+  .ice-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0) 50%
+    );
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  
+  /* Анимации при наведении */
+  .achievement-card:hover img {
+    transform: scale(1.05);
+  }
+  
+  .achievement-card:hover .achievement-info {
+    transform: translateY(0);
+  }
+  
+  .achievement-card:hover .ice-effect {
+    opacity: 1;
+  }
+  .ice-timeline-section {
+    background: linear-gradient(135deg, #f0f8ff 0%, #e6e6fa 100%);
+    padding: 80px 0;
+  }
+  
+  .timeline-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .ice-path {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, 
+      rgba(176,224,230,0.8), 
+      rgba(123,104,238,0.8));
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+  
+  .timeline-event {
+    position: relative;
+    margin: 60px 0;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  .event-ice-crystal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    background: white;
+    border: 3px solid #7b68ee;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    transform: translate(-50%, -50%) rotate(45deg);
+    z-index: 2;
+    transition: all 0.5s;
+  }
+  
+  .event-content {
+    width: 45%;
+    padding: 20px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(123,104,238,0.2);
+  }
+  
+  .timeline-event:nth-child(odd) .event-content {
+    margin-left: 55%;
+  }
+  
+  .timeline-event:nth-child(even) .event-content {
+    margin-right: 55%;
+  }
+  
+  .hidden-photo {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+  }
+  @media (max-width: 768px) {
+    .ice-path { left: 20px; }
+    .event-content, 
+    .timeline-event:nth-child(odd) .event-content,
+    .timeline-event:nth-child(even) .event-content {
+      width: calc(100% - 80px);
+      margin-left: 60px !important;
+    }
+  }
   .shape-button:hover {
     border-radius: 50%; /* Превращаем в круг */
     width: 50px;      /* Делаем ширину равной высоте для круга */
@@ -815,7 +1054,148 @@ nav a {
         clip: rect(0, 900px, 0, 0); /* Обрезаем текст */
         animation: glitch-anim3 2s linear infinite; /* Применяем анимацию glitch-anim3 */
       }
-      
+      /* Основа */
+.frosted-glass-container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 2rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+  overflow: hidden;
+}
+
+/* Анимация кристаллов */
+.ice-crystal-decoration {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: url('ice-crystal.png') no-repeat;
+  opacity: 0.7;
+  animation: floatCrystal 15s infinite alternate;
+}
+
+@keyframes floatCrystal {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(30px, 40px) rotate(10deg); }
+}
+
+/* Анимация заголовка */
+.gliding-title .title-word {
+  display: inline-block;
+  opacity: 0;
+  animation: glideIn 0.8s forwards;
+}
+
+@keyframes glideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Задержка для каждого слова */
+.gliding-title .title-word:nth-child(1) { animation-delay: 0.1s; }
+.gliding-title .title-word:nth-child(2) { animation-delay: 0.3s; }
+.gliding-title .title-word:nth-child(3) { animation-delay: 0.5s; }
+/* ... и т.д. */
+
+/* Карточки истории */
+.history-card {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(240, 248, 255, 0.7);
+  border-radius: 12px;
+  transition: all 0.5s ease;
+}
+
+.history-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 119, 182, 0.1);
+}
+
+.card-ice-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  border-image: linear-gradient(45deg, #7b68ee, #00bfff);
+  border-image-slice: 1;
+  border-radius: 10px;
+  animation: borderGlow 3s infinite alternate;
+}
+
+@keyframes borderGlow {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* Список дисциплин */
+.disciplines-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin: 0.8rem 0;
+  cursor: pointer;
+}
+
+.disciplines-list li::before {
+  content: "❅";
+  position: absolute;
+  left: 0;
+  transition: transform 0.3s;
+}
+
+.disciplines-list li:hover::before {
+  transform: rotate(45deg);
+}
+
+/* Кнопка с эффектом льда */
+.glass-button {
+  position: relative;
+  background: rgba(123, 104, 238, 0.2);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  color: #2F4F4F;
+  font-weight: bold;
+  backdrop-filter: blur(5px);
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.glass-button:hover {
+  background: rgba(123, 104, 238, 0.3);
+  transform: translateY(-2px);
+}
+
+.button-ice {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0)
+  );
+  transform: rotate(30deg);
+  transition: all 0.5s;
+}
+
+.glass-button:hover .button-ice {
+  left: 100%;
+}
       @keyframes glitch-anim3 {
         0% {
           clip: rect(8px, 9999px, 108px, 0);
@@ -947,7 +1327,72 @@ nav a {
 .styled-button:active {
   transform: translateY(0);
 }
+.ice-timeline-section {
+  background: linear-gradient(135deg, #f0f8ff 0%, #e6e6fa 100%);
+  padding: 80px 0;
+}
 
+.timeline-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ice-path {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, 
+    rgba(176,224,230,0.8), 
+    rgba(123,104,238,0.8));
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.timeline-event {
+  position: relative;
+  margin: 60px 0;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.event-ice-crystal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  background: white;
+  border: 3px solid #7b68ee;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  transform: translate(-50%, -50%) rotate(45deg);
+  z-index: 2;
+  transition: all 0.5s;
+}
+
+.event-content {
+  width: 45%;
+  padding: 20px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 10px;
+  box-shadow: 0 5px 25px rgba(123,104,238,0.2);
+}
+
+.timeline-event:nth-child(odd) .event-content {
+  margin-left: 55%;
+}
+
+.timeline-event:nth-child(even) .event-content {
+  margin-right: 55%;
+}
+
+.hidden-photo {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
 @keyframes pulse {
     0% {
         transform: scale(1);
