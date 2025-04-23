@@ -220,34 +220,10 @@ document.querySelector('.glass-button').addEventListener('click', function() {
     ]
   });
 });    
-const starButton = document.getElementById('starButton');
-const starContainer = document.getElementById('starContainer');
 
-starButton.addEventListener('click', createStar);
 
-function createStar() {
-  const star = document.createElement('div');
-  star.classList.add('star');
+   
 
-  // Фиксированная позиция и простая анимация
-  star.style.left = '50%';
-  star.style.top = '50%';
-  star.style.animation = 'flyRight 2s linear forwards'; // Изменено
-
-  starContainer.appendChild(star);
-
-  star.addEventListener('animationend', () => {
-    star.remove();
-  });
-}        
-skaterImage.addEventListener('mouseover', () => {
-  skaterImage.style.transform = 'rotate(360deg)';
-  skaterImage.style.transition = 'transform 2s ease-in-out';
-});  
-
-skaterImage.addEventListener('mouseout', () => {
-  skaterImage.style.transform = 'rotate(0deg)';
-});
 const filmStrip = document.querySelector('.film-strip');
 let scrollPos = 0;
 
@@ -456,6 +432,74 @@ document.querySelectorAll(".event-ice-crystal").forEach(crystal => {
     });
   });
 });
+// Анимация цифр статистики
+function animateValue(obj, start, end, duration) {
+  let startTimestamp = null;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    obj.innerHTML = Math.floor(progress * (end - start) + start);
+    if (progress < 1) window.requestAnimationFrame(step);
+  };
+  window.requestAnimationFrame(step);
+}
+
+document.querySelectorAll('.stat-number').forEach(el => {
+  animateValue(el, 0, parseInt(el.getAttribute('data-count')), 2000);
+});
+
+// Подсказки
+document.querySelectorAll('.tooltip').forEach(item => {
+  item.addEventListener('mouseenter', function() {
+    gsap.to(this.querySelector('.tooltip-text'), {
+      opacity: 1,
+      y: 0,
+      duration: 0.3
+    });
+  });
+  item.addEventListener('mouseleave', function() {
+    gsap.to(this.querySelector('.tooltip-text'), {
+      opacity: 0,
+      y: 10,
+      duration: 0.2
+    });
+  });
+});
+
+// Автоматическое обновление подписи
+document.querySelectorAll('.film-frame').forEach(frame => {
+  frame.addEventListener('mouseenter', function() {
+    const caption = this.closest('.film-reel-gallery').querySelector('.photo-caption');
+    caption.textContent = this.querySelector('img').alt;
+  });
+});
+
+// Плавное ускорение/замедление
+const reelTrack = document.querySelector('.reel-track');
+let isHovered = false;
+
+reelTrack.addEventListener('mouseenter', () => {
+  isHovered = true;
+  gsap.to(reelTrack, {
+    animationPlayState: 'paused',
+    duration: 0.5
+  });
+});
+
+reelTrack.addEventListener('mouseleave', () => {
+  isHovered = false;
+  gsap.to(reelTrack, {
+    animationPlayState: 'running',
+    duration: 0.5
+  });
+});
+document.querySelectorAll('.film-frame img').forEach(img => {
+  img.addEventListener('click', function() {
+    this.requestFullscreen().catch(e => console.log(e));
+  });
+});
+
+
 const photoButton = document.getElementById('photoButton');
 const photoOverlay = document.getElementById('photoOverlay');
 
@@ -632,7 +676,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
 
-console.log("Кнопка:", starButton);
-console.log("Контейнер:", starContainer);
+
 
 

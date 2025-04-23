@@ -173,7 +173,7 @@ body {
 #photoButton {
   padding: 10px 20px;
   background-color: #007bff;
-  color: white;
+  color: rgb(255, 255, 255);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -204,7 +204,7 @@ body {
 }
 
 header {
-  background-color: #8869df;
+  background-color: #ff480000;
   color: rgb(255, 255, 255);
   padding: 1em 0;
   position: sticky;
@@ -345,10 +345,8 @@ nav a {
     from { clip-path: circle(0% at 50% 50%); }
     to { clip-path: circle(100% at 50% 50%); }
   }
-  @keyframes float {
-    0%, 100% { transform: translateY(0) rotateY(15deg); }
-    50% { transform: translateY(-20px) rotateY(5deg); }
-  }
+ 
+  
   
   @keyframes snowfall {
     from { background-position: 0 0; }
@@ -551,39 +549,217 @@ nav a {
   #shape {
     animation: morph 15s infinite linear;
   }
-  #starButton {
-    background-color: #4CAF50; /* Зеленый цвет */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
+ 
+  
+  .film-reel-gallery {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 3rem auto;
+    overflow: hidden;
+    background: #7c4700;
+    padding: 40px 0;
+    border-radius: 5px;
+    box-shadow: 0 10px 30px rgba(4, 22, 75, 0.795);
   }
   
-  #starContainer {
-    position: absolute; /* Абсолютное позиционирование */
+  .reel-track {
+    display: flex;
+    gap: 15px;
+    padding: 0 100px;
+    animation: scrollReel 40s linear infinite;
+  }
+  
+  .film-reel-gallery:hover .reel-track {
+    animation-play-state: paused;
+  }
+  
+  .film-frame {
+    position: relative;
+    min-width: 250px;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 3px;
+    box-shadow: 0 4px 10px rgba(88, 54, 3, 0.623);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .film-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  
+  .film-frame:hover {
+    transform: scale(1.1);
+    z-index: 10;
+  }
+  
+  .film-frame:hover img {
+    transform: scale(1.2);
+  }
+  
+  .frame-perforation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: repeating-linear-gradient(
+      to right,
+      #9e5919 0px,
+      #111 10px,
+      transparent 10px,
+      transparent 20px
+    );
+  }
+  
+  /* Катушки */
+  .reel-left, .reel-right {
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 60px;
+    background: #333;
+    border-radius: 50%;
+    border: 5px solid #555;
+    transform: translateY(-50%);
+  }
+  
+  .reel-left {
+    left: 20px;
+  }
+  
+  .reel-right {
+    right: 20px;
+  }
+  
+  .reel-left::before, .reel-right::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #77480a;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .photo-caption {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-family: 'Courier New', monospace;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .film-frame:hover + .photo-caption {
+    opacity: 1;
+  }
+  .film-frame::before {
+    content: "";
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Скрываем звезды, выходящие за границы */
-    pointer-events: none; /* Позволяет кликать элементы под контейнером */
+    background: url('https://img.freepik.com/free-photo/close-up-film-texture-details_23-2149368379.jpg?t=st=1745245170~exp=1745248770~hmac=341228cb1524950cce1979f11a46c6fb0b1c3b9f39e8afdf5d451da545f22bd4&w=826');
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 2;
   }
-  .animated-icon {
-    animation: rotate 2s linear infinite; /* Применяем анимацию rotate */
+  .kaleidoscope-gallery {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+  }
+  
+  .ice-circle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: rotateCircle 30s linear infinite;
+  }
+  
+  .photo-spoke {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: left center;
+  }
+  
+  .photo-ice {
+    width: 150px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    transform: rotate(90deg);
+    transition: all 0.5s;
+    filter: drop-shadow(0 0 10px rgba(123, 104, 238, 0.5));
+  }
+  
+  .photo-ice img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  
+  .ice-crack {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://img.freepik.com/premium-photo/reykjavik-iceland-january-2-2018-reykjavik-capital-city-iceland_312661-126.jpg?w=996');
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .photo-ice:hover {
+    transform: rotate(90deg) scale(1.3);
+    z-index: 10;
+  }
+  
+  .photo-ice:hover .ice-crack {
+    opacity: 0.7;
+    animation: crackAppear 0.5s forwards;
+  }
+  
+  .center-crystal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    background: white;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    transform: translate(-50%, -50%);
+    animation: pulse 2s infinite alternate;
+  }
+  
+  @keyframes rotateCircle {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 
-  .star {
-    position: absolute;
-    width: 30px;  /* Размер звезды */
-    height: 30px;
-    background: url('star.png') no-repeat center center; /* Замените на URL своей звезды */
-    background-size: cover;
-    animation: flyAway 2s linear forwards; /* Запуск анимации */
+  @keyframes crackAppear {
+    from { clip-path: circle(0% at 50% 50%); }
+    to { clip-path: circle(100% at 50% 50%); }
   }
+  @keyframes scrollReel {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  
   
   @keyframes flyAway {
     0% {
@@ -905,6 +1081,7 @@ nav a {
       width: calc(100% - 80px);
       margin-left: 60px !important;
     }
+    
   }
   .shape-button:hover {
     border-radius: 50%; /* Превращаем в круг */
@@ -1069,7 +1246,331 @@ nav a {
     transform: translateY(0);
   }
 }
+:root {
+  --ice-blue: #e6f7ff;
+  --lavender: #7b68ee;
+  --deep-blue: #1e3a8a;
+}
 
+.skater-profile {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Эффект глитча для имени */
+.glitch-layers {
+  position: relative;
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: var(--deep-blue);
+}
+
+.glitch-layers::before,
+.glitch-layers::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  clip: rect(0, 900px, 0, 0);
+}
+
+.glitch-layers::before {
+  animation: glitch-effect 3s infinite linear alternate-reverse;
+  color: var(--lavender);
+}
+
+.glitch-layers::after {
+  animation: glitch-effect 2s infinite linear alternate-reverse;
+  color: #00bfff;
+}
+
+@keyframes glitch-effect {
+  0% { clip: rect(30px, 9999px, 60px, 0) }
+  20% { clip: rect(50px, 9999px, 35px, 0) }
+  40% { clip: rect(20px, 9999px, 70px, 0) }
+  60% { clip: rect(80px, 9999px, 10px, 0) }
+  80% { clip: rect(40px, 9999px, 65px, 0) }
+}
+
+/* Карточка с эффектом льда */
+.frosted-card {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 119, 182, 0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Анимированные фразы */
+.highlight-phrase {
+  background: linear-gradient(90deg, #7b68ee, #00bfff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Точки на временной линии */
+.timeline-point {
+  position: relative;
+  padding-left: 50px;
+  margin: 25px 0;
+}
+
+.ice-mark {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 30px;
+  height: 30px;
+  background: rgb(255, 0, 0);
+  border: 3px solid var(--lavender);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+/* Блок с тренировками */
+.training-stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 40px 0;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--lavender);
+}
+
+.stat-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.progress-ring__circle {
+  stroke-dasharray: 326.56;
+  stroke-dashoffset: 326.56;
+  animation: dash 3s forwards;
+}
+
+@keyframes dash {
+  to { stroke-dashoffset: 100; }
+}
+.ice-school-card {
+  position: relative;
+  max-width: 800px;
+  margin: 2rem auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 50px rgba(0, 119, 182, 0.3);
+  font-family: 'Montserrat', sans-serif;
+  color: #2F4F4F;
+}
+
+.ice-rink-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    #E6F7FF 0%,
+    #B0E0E6 50%,
+    #87CEEB 100%
+  );
+  opacity: 0.3;
+  z-index: -1;
+  animation: iceGlint 8s infinite alternate;
+}
+
+.school-header {
+  padding: 2rem;
+  text-align: center;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(123, 104, 238, 0.2);
+}
+
+.school-name {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #1E3A8A, #7B68EE);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sports-types {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 1.5rem;
+}
+
+.sport-figure {
+  color: #7B68EE;
+  animation: textGlow 3s infinite alternate;
+}
+
+.sport-hockey {
+  color: #1E3A8A;
+}
+
+.official-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #1E3A8A;
+  color: white;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.info-block {
+  padding: 1.5rem;
+  margin: 1rem;
+  background: rgba(255,255,255,0.9);
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s;
+}
+
+.info-block:hover {
+  transform: translateY(-5px);
+}
+
+.mission-block {
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(to bottom, #7B68EE, #00BFFF);
+}
+
+.contact-sheet {
+  background: rgba(30, 58, 138, 0.05);
+  padding: 2rem;
+  border-radius: 15px;
+  margin: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  padding: 0.8rem;
+  background: white;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.contact-item:hover {
+  background: rgba(123, 104, 238, 0.1);
+}
+
+.contact-icon {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  min-width: 30px;
+  text-align: center;
+}
+
+.official-site-btn {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(90deg, #1E3A8A, #7B68EE);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 1rem;
+  transition: transform 0.3s;
+}
+
+.official-site-btn:hover {
+  transform: translateX(10px);
+}
+
+.link-arrow {
+  margin-left: 0.5rem;
+  transition: margin-left 0.3s;
+}
+
+.official-site-btn:hover .link-arrow {
+  margin-left: 1rem;
+}
+
+/* Анимации */
+@keyframes iceGlint {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.5; }
+}
+
+@keyframes textGlow {
+  from { text-shadow: 0 0 5px rgba(123, 104, 238, 0.5); }
+  to { text-shadow: 0 0 15px rgba(123, 104, 238, 0.9); }
+}
+/* Эффект отпечатка руки */
+.hand-print {
+  width: 80px;
+  height: 80px;
+  background: url('https://img.freepik.com/premium-photo/palm-print-isolated-white-background-blue-paint_153912-16470.jpg?w=740') no-repeat;
+  background-size: contain;
+  opacity: 0.8;
+  animation: handGlow 2s infinite alternate;
+}
+
+@keyframes handGlow {
+  from { filter: drop-shadow(0 0 5px rgba(123,104,238,0.5)); }
+  to { filter: drop-shadow(0 0 15px rgba(123,104,238,0.9)); }
+}
+
+/* Цитата */
+.ice-quote {
+  position: relative;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem;
+  text-align: center;
+  padding: 20px;
+  margin: 40px 0;
+}
+
+.quote-crystal {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: white;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  opacity: 0.7;
+  animation: float 4s ease-in-out infinite;
+}
 /* Задержка для каждого слова */
 .gliding-title .title-word:nth-child(1) { animation-delay: 0.1s; }
 .gliding-title .title-word:nth-child(2) { animation-delay: 0.3s; }
@@ -1656,16 +2157,7 @@ nav a {
 
 
 
-/* Анимации */
-@keyframes textGlow {
-  0% { text-shadow: 0 0 5px rgba(106, 17, 203, 0.3); }
-  100% { text-shadow: 0 0 20px rgba(37, 117, 252, 0.6); }
-}
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
 
 /* Олимпийские кольца */
 .olympic-rings {
@@ -1722,51 +2214,7 @@ nav a {
         height: 60px;
         animation: spin 1.5s linear infinite; /* Применяем анимацию spin */
       }
-      .carousel {
-        width: 250px;
-        margin: 0 auto;
-        position: relative;
-        overflow: hidden;
-      }
-  
-      .carousel-inner {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-      }
-  
-      .carousel-item {
-        width: 100%;
-        flex-shrink: 0; /* Важно для корректной работы карусели */
-      }
-  
-      .carousel-item img {
-        width: 100%;
-        height: auto;
-      }
-  
-      .carousel-control {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: rgba(114, 13, 145, 0.5);
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        cursor: pointer;
-        font-size: 16px;
-      }
-  
-      .carousel-control.prev {
-        left: 10px;
-      }
-  
-      .carousel-control.next {
-        right: 10px;
-      }
-  
-      .carousel-control:hover {
-        background-color: rgba(0, 0, 0, 0.8);
-      }
+      
       body {
         perspective: 800px; /* Важно! Создаем перспективу для 3D */
         .lightbox-gallery {
@@ -1823,11 +2271,8 @@ nav a {
   white-space: nowrap;
 }
 
-/* Лента с кадрами */
-.film-strip {
-  display: inline-block;
-  padding: 0 20px;
-}
+
+
 
 /* Отдельный кадр */
 .film-frame {
@@ -1872,17 +2317,8 @@ nav a {
   bottom: 10px;
 }
 
-/* Полоски по бокам (опционально) */
-.film-strip::before,
-.film-strip::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 20px;
-  background: linear-gradient(to right, #fac42e, transparent);
-  z-index: 2;
-}
+
+
 .film-gallery {
   box-shadow: 0 10px 20px rgba(190, 125, 2, 0.5);
 }
@@ -2334,4 +2770,3 @@ nav a {
 .swiper-pagination-bullet-active {
   background-color: var(--primary-color);
 }
-   
