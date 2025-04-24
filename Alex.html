@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Александра Ковалевская - Фигурное катание</title>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.2em;
+            margin: 0;
+            padding: 0;
+        }
+        .vibes {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2em;
+            color: #be97eb;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .photo-container {
+            width: 300px;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            filter: blur(10px) grayscale(100%);
+            animation: iney 3s forwards;
+        }
+        @keyframes iney {
+            0% {
+                opacity: 0;
+                filter: blur(10px) grayscale(100%);
+            }
+            100% {
+                opacity: 1;
+                filter: blur(0) grayscale(0%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="vibes">Александра Ковалевская</h1>
+        <h2 class="vibes">Фигурное катание</h2>
+    </header>
+
+    <!-- Бегущая строка -->
+    <div class="marquee">
+        <span>«Лёд — моя стихия» • Личный рекорд: 189.45 баллов • Чемпионка России 2023 •</span>
+    </div>
+
+    <!-- Главное меню -->
+    <nav class="main-menu">
+        <ul class="menu">
+            <li class="menu-item"><a href="#главная">Главная</a></li>
+            <li class="menu-item"><a href="#биография">Биография</a></li>
+            <li class="menu-item"><a href="#галерея">Галерея</a></li>
+            <li class="menu-item"><a href="#контакты">Контакты</a></li>
+        </ul>
+    </nav>
+
+    <div class="scroll-indicator"></div>
+    <div class="progress-bar"></div>
+    <div class="custom-cursor"></div>
+    <canvas id="particle-canvas"></canvas>
+
+    <main>
+        <!-- Параллакс секция -->
+        <section id="главная" class="parallax-section">
+            <div class="parallax-container">
+                <div class="parallax-background"></div>
+                <div class="parallax-content">
+                    <h1><center>Александра о фигурном катании:</center></h1>
+                    <blockquote>
+                        <p class="animated-text">
+                            <span>"Мечты сбываются только тогда, когда ты веришь в свои силы и не боишься испытаний.
+                            Фигурное катание - это не только спорт, но и искусство, которое требует терпения,
+                            стойкости и отчаянной мотивации. Помни, что твои усилия не останутся незамеченными,
+                            и каждый шаг на льду приближает тебя к своей мечте. Не останавливайся, иди вперед
+                            и покори мир своим талантом и стойкостью! 💪⛸✨"</span>
+                        </p>
+                    </blockquote>
+
+                    <div class="button-container">
+                        <center>
+                            <button id="open-modal" class="border-button modal-button">
+                                ОТКРОЙ
+                            </button>
+                        </center>
+                    </div>
+
+                    <!-- Модальное окно -->
+                    <div id="modal" class="modal">
+                        <div class="modal-content">
+                            <span id="close-modal" class="close-modal">&times;</span>
+                            <h2>Пожелание</h2>
+                            <p id="wish-text" class="glass-button"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cursor-controls">
+                <button class="border-button cursor-button" onclick="changeCursor('star')">🌟</button>
+                <button class="border-button cursor-button" onclick="changeCursor('skate')">⛸</button>
+                <button class="border-button cursor-button" onclick="changeCursor('snowflake')">❄</button>
+            </div>
+        </section>
+        <!-- Секция "О фигурном катании" -->
+        <section class="about-skating">
+            <!-- Анимированный заголовок с эффектом печатания -->
+            <h1 class="typing-text" data-text="Для начала давайте разберёмся, что же вообще такое фигурное катание"></h1>
+
+            <!-- Контейнер с эффектом матового стекла -->
+            <div class="frosted-glass-container">
+                <div class="ice-crystal-decoration"></div>
+
+                <article class="skating-history">
+                    <!-- Анимированный заголовок с плавным появлением слов -->
+                    <h2 class="gliding-title">
+                        <span class="title-word">Фигурное</span>
+                        <span class="title-word">катание</span>
+                        <span class="title-word">—</span>
+                        <span class="title-word">поэзия</span>
+                        <span class="title-word">на</span>
+                        <span class="title-word">льду</span>
+                    </h2>
+
+                    <!-- Лента времени с историей -->
+                    <div class="timeline-scroll">
+                        <!-- Блок 1: Истоки фигурного катания -->
+                        <section class="history-card" data-year="Древность">
+                            <div class="card-ice-border"></div>
+                            <h3>Истоки</h3>
+                            <p>
+                                На территории Дании, Англии, Нидерландов найдены древние костяные коньки (200 год до н.э.)...
+                                Является одним из самых популярных зимних видов спорта. Уже более века соревнования фигуристов
+                                входят в программу Олимпийских игр.
+                            </p>
+                            <p>
+                                Фигурное катание - это вид спорта, в котором спортсмен, двое спортсменов или группа спортсменов
+                                двигаются по льду на коньках, выполняя различные элементы в порядке, определенном программой,
+                                в определенное количество времени и под музыкальное сопровождение.
+                            </p>
+                        </section>
+
+                        <!-- Блок 2: Развитие спорта -->
+                        <section class="history-card" data-year="XIX век">
+                            <div class="card-ice-border"></div>
+                            <h3>Рождение спорта</h3>
+                            <p>
+                                В 1892 создан Международный союз конькобежцев. Первый чемпионат мира в 1896 в Санкт-Петербурге...
+                                На территории Дании, Англии, Нидерландов и Норвегии были найдены остатки так называемых древних коньков,
+                                которые были сделаны из костей лошадей, оленей, овец.
+                            </p>
+                        </section>
+                    </div>
+
+                    <!-- Список дисциплин -->
+                    <div class="types-container">
+                        <h3 class="types-title">Основные дисциплины:</h3>
+                        <ul class="disciplines-list">
+                            <li>Женское одиночное</li>
+                            <li>Мужское одиночное</li>
+                            <li>Парное катание</li>
+                            <li>Танцы на льду</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- Кнопка "Узнать больше" -->
+                <button class="glass-button">
+                    <span class="button-ice"></span>
+                    Узнать больше
+                </button>
+            </div>
+
+            <!-- Анимированный текст с эффектом волны -->
+            <div class="ripple-button">
+                <marquee>
+                    <p class="shader-effect">И вообще, спорт - это очень важно!!!</p>
+                </marquee>
+            </div>
+
+            <!-- Галерея GIF-изображений -->
+            <div class="gif-gallery">
+                <marquee>
+                    <img src="https://www.gifki.org/data/media/285/konki-animatsionnaya-kartinka-0016.gif" alt="Катание на коньках">
+                    <img src="https://www.gifki.org/data/media/1845/figurnoe-katanie-animatsionnaya-kartinka-0006.gif" alt="Фигурное катание">
+                    <img src="https://www.gifki.org/data/media/1845/figurnoe-katanie-animatsionnaya-kartinka-0003.gif" alt="Прыжки на льду">
+                </marquee>
+            </div>
+        </section>
+        <!-- Секция биографии -->
+        <section id="биография" class="bio-section">
+            <h2 class="ice-title">
+                <span>О фигуристке</span>
+                <span class="magic-text">«Лёд — моя стихия»</span>
+            </h2>
+
+            <!-- Фото с эффектом появления -->
+            <div class="photo-container">
+                <img src="груша22.png" alt="Александра Ковалевская - портрет">
+            </div>
+
+            <!-- Блоки биографии с эффектом "ледяного" появления -->
+            <div class="bio-blocks">
+                <!-- Блок 1 -->
+                <div class="frost-block">
+                    <h3 class="glacial-header">«Встала на коньки и поехала»</h3>
+                    <p class="crystal-text">
+                        Александре было всего три года, когда она впервые вышла на лёд...
+                    </p>
+                </div>
+
+                <!-- Блок 2 -->
+                <div class="frost-block">
+                    <h3 class="glacial-header">Александра Ковалевская: «Лёд — моя стихия, а прыжки — свобода»</h3>
+                    <p class="crystal-text">
+                        Юная фигуристка Александра Ковалевская в свои годы уже демонстрирует характер чемпионки...
+                    </p>
+                </div>
+
+                <!-- Блок 3 -->
+                <div class="frost-block">
+                    <h3 class="glacial-header">«Встала на коньки и поехала»: Как начинался путь</h3>
+                    <p class="crystal-text">
+                        Александре было всего три года, когда она впервые вышла на лёд...
+                    </p>
+                </div>
+
+                <!-- Остальные блоки биографии -->
+                <!-- ... -->
+            </div>
+
+            <!-- Олимпийские кольца - декоративный элемент -->
+            <div class="olympic-rings">
+                <div class="ring" data-color="blue"></div>
+                <div class="ring" data-color="black"></div>
+                <div class="ring" data-color="red"></div>
+                <div class="ring" data-color="yellow"></div>
+                <div class="ring" data-color="green"></div>
+            </div>
+        </section>
+
+        <!-- Секция профиля с эффектами -->
+        <div class="skater-profile">
+            <!-- Заголовок с эффектом глитча -->
+            <div class="name-title">
+                <h1 class="glitch-layers" data-text="Александра Ковалевская">
+                    <span>Александра Ковалевская</span>
+                </h1>
+                <div class="title-underline"></div>
+            </div>
+
+            <!-- Основное содержимое профиля -->
+            <div class="bio-content">
+                <div class="frosted-card">
+                    <p class="animated-text">
+                        <span class="highlight-phrase">Юная, но уже заявившая о себе фигуристка</span>,
+                        чья страсть ко льду и упорство восхищают.
+                    </p>
+
+                    <!-- Элементы временной линии -->
+                    <div class="timeline-point" data-year="3 года">
+                        <div class="ice-mark"></div>
+                        <p>
+                            С трех лет посвятила себя фигурному катанию, сразу проявив
+                            <span class="tooltip">природный талант
+                                <span class="tooltip-text">"Встала на коньки и сразу поехала" — слова тренера</span>
+                            </span>.
+                        </p>
+                    </div>
+
+                    <!-- Блок статистики тренировок -->
+                    <div class="training-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="5">5-6</div>
+                            <div class="stat-label">часов на льду ежедневно</div>
+                        </div>
+                        <div class="stat-circle">
+                            <svg class="progress-ring" width="120" height="120">
+                                <circle class="progress-ring__circle" stroke="#7b68ee"
+                                stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
+                            </svg>
+                            <div class="circle-text">Шпагат на льду</div>
+                        </div>
+                    </div>
+
+                    <!-- Блок с цитатой -->
+                    <blockquote class="ice-quote">
+                        "Лёд — моя стихия, а прыжки — свобода"
+                        <div class="quote-crystal"></div>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+
+        <!-- Секция галереи -->
+        <section id="галерея" class="gallery-section">
+            <!-- Анимированный заголовок -->
+            <h1 class="wavy-text">
+                <span>А</span><span> </span><span>т</span><span>е</span><span>п</span>
+                <span>е</span><span>р</span><span>ь</span><span> </span><span>г</span>
+                <span>а</span><span>л</span><span>е</span><span>р</span><span>е</span>
+                <span>я</span><span>!</span><span> </span><span>😄</span>
+            </h1>
+
+            <h2 class="hover-effect">
+                <center>Фотографии спортсменки</center>
+            </h2>
+
+            <!-- Маскированное изображение -->
+            <div class="container">
+                <div class="masked-image">
+                    <img id="myImage" src="https://thumbs.dreamstime.com/z/figure-skating-ice-close-up-view-skates-rink-78627947.jpg"
+                    alt="Фигурное катание - крупный план">
+                </div>
+                <div id="particles-container"></div>
+            </div>
+
+            <!-- Галерея с эффектом кинопленки -->
+            <div class="film-reel-gallery">
+                <div class="reel-track">
+                    <!-- Фото 1 -->
+                    <div class="film-frame">
+                        <img src="груша10.jpg" alt="Александра на тренировке" loading="lazy">
+                        <div class="frame-perforation"></div>
+                    </div>
+
+                    <!-- Фото 2 -->
+                    <div class="film-frame">
+                        <img src="груша11.jpg" alt="Александра на соревнованиях" loading="lazy">
+                        <div class="frame-perforation"></div>
+                    </div>
+
+                    <!-- Другие фотографии -->
+                    <!-- ... -->
+                </div>
+
+                <!-- Элементы оформления -->
+                <div class="reel-left"></div>
+                <div class="reel-right"></div>
+                <div class="photo-caption">Александра Ковалевская на тренировке</div>
+            </div>
+            <!-- Калейдоскоп-галерея -->
+            <div class="kaleidoscope-gallery">
+                <div class="ice-circle">
+                    <!-- Секторы калейдоскопа -->
+                    <div class="photo-spoke" data-angle="0">
+                        <div class="photo-ice">
+                            <img src="груша20.png" alt="Тренировка Александры">
+                            <div class="ice-crack"></div>
+                        </div>
+                    </div>
+                    <!-- Остальные секторы -->
+                    <!-- ... -->
+                </div>
+                <div class="center-crystal"></div>
+            </div>
+        </section>
+
+        <!-- Секция достижений -->
+        <section class="achievements-section">
+            <h2>Достижения</h2>
+            <div class="achievements-ribbon">
+                <div class="ribbon-track">
+                    <!-- Карточка достижения 1 -->
+                    <div class="achievement-card">
+                        <div class="medal-icon">🥇</div>
+                        <img src="груша10.jpg" alt="Чемпионка России 2023" loading="lazy">
+                        <div class="ribbon-content">
+                            <h3>2023</h3>
+                            <p>Чемпионат России</p>
+                            <p class="score">189.45 баллов</p>
+                        </div>
+                        <div class="ribbon-tail"></div>
+                    </div>
+
+                    <!-- Карточка достижения 2 -->
+                    <div class="achievement-card">
+                        <div class="medal-icon">🥈</div>
+                        <img src="груша18.png" alt="Кубок Европы 2022" loading="lazy">
+                        <div class="ribbon-content">
+                            <h3>2022</h3>
+                            <p>Кубок Европы</p>
+                            <p class="score">178.30 баллов</p>
+                        </div>
+                        <div class="ribbon-tail"></div>
+                    </div>
+                    <!-- Остальные карточки -->
+                    <!-- ... -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция видео -->
+        <section id="video" class="video-section">
+            <h2>Видео выступлений</h2>
+            <div class="video-container">
+                <video width="640" height="480" controls poster="0343e729-f59d-4564-a078-089e66ffc4ca.jpg">
+                    <source src="video1.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео тег.
+                </video>
+                <video width="640" height="480" controls poster="0343e729-f59d-4564-a078-089e66ffc4ca.jpg">
+                    <source src="video2.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео тег.
+                </video>
+            </div>
+        </section>
+
+        <!-- Секция контактов -->
+        <section id="контакты" class="contact-section">
+            <div class="ice-school-card">
+                <div class="ice-rink-background"></div>
+                <div class="school-header">
+                    <h2>СПОРТИВНАЯ ШКОЛА</h2>
+                    <div class="sports-types">
+                        <span class="sport-figure">ФИГУРНОЕ КАТАНИЕ</span>
+                        <span class="sport-divider">|</span>
+                        <span class="sport-hockey">ХОККЕЙ</span>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <p><strong>Адрес:</strong> г. Краснодар, ул. Пригородная, д.24</p>
+                    <p><strong>Телефон:</strong> +7 (861) 99-22-385</p>
+                    <p><strong>Email:</strong> tssp6@bk.ru</p>
+                    <a href="http://scp6.reduit-company.ru/" class="official-site-btn">
+                        Посетить сайт школы
+                        <span class="link-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer>
+        <p>&copy; 2025 Волошина Алёна Игоревна</p>
+    </footer>
+
+    <!-- Подключение скриптов -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
