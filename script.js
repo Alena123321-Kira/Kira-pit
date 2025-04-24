@@ -1,691 +1,484 @@
+/**
+ * Основной модуль приложения
+ * @module Main
+ */
 
-const glitchElements = document.querySelectorAll('.glitch'); /* Получаем все элементы с классом "glitch" */
-glitchElements.forEach(element => { /* Для каждого элемента */
-  element.setAttribute('data-text', element.textContent); /* Копируем текст в атрибут data-text */
-});
-window.addEventListener('scroll', function() {
-  const parallaxContainer = document.querySelector('.parallax-background');
-  const scrollPosition = window.pageYOffset;
-  parallax.style.transform = `translateY(${scrollPosition * 0.5}px)`; // 0.5 - скорость параллакса
-});
-const customCursor = document.querySelector('.custom-cursor');
-document.addEventListener('mousemove', (e) => {
-    customCursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-});
-window.addEventListener('scroll', function() {
-  const scrollElement = document.querySelector('.scroll-transform-element');
-  const scrollPosition = window.scrollY;
-  const scaleFactor = Math.max(1, 1 + scrollPosition * 0.001);
-  const rotation = scrollPosition * 0.1;
-  scrollElement.style.transform = `scale(${scaleFactor}) rotate(${rotation}deg)`;
+// Конфигурация частиц для фона
+const PARTICLE_CONFIG = {
+  count: 100,
+  colors: ['rgba(255, 255, 255, 0.6)', 'rgba(176, 224, 230, 0.7)'],
+  minRadius: 2,
+  maxRadius: 5,
+  maxSpeed: 0.5
+};
 
-
-  if (scrollPosition <= 50) {
-    scrollElement.style.transform = 'scale(1) rotate(0deg)';
-  }
-});
-document.querySelectorAll('.accordion-header').forEach(header => {
-  header.addEventListener('click', function() {
-     this.parentElement.classList.toggle('active');
- });
-});
- // Плавная прокрутка
- document.querySelectorAll('.hex-btn').forEach(btn => {
-  btn.addEventListener('click', function(e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href');
-    document.querySelector(targetId).scrollIntoView({
-      behavior: 'smooth'
-    });
-  });
-});
-document.querySelectorAll('.menu-link').forEach(link => {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href');
-    document.querySelector(targetId).scrollIntoView({
-      behavior: 'smooth'
-    });
-  });
-});
-
-// Анимация при скролле
-window.addEventListener('scroll', () => {
-  const menu = document.querySelector('.hexagon-menu');
-  if (window.scrollY > 100) {
-    menu.style.opacity = '1';
-  }
-});
-const openModalBtn = document.getElementById('open-modal');
-const modal = document.getElementById('modal');
-const closeModalBtn = document.getElementById('close-modal');
-const wishText = document.getElementById('wish-text');
-
-const wishes = [
-  "Выпрямись!!!Улыбнись!!!Хорошего настроения и приятного чтения😊",
-  "Пусть каждый день будет наполнен вдохновением и радостью!💖",
-  "Верь в себя и свои мечты, и все обязательно получится!🔥",
-  "Наслаждайся каждым моментом жизни!💫",
-    "Лёд ждёт твоего великолепия! Покажи им, на что ты способна! ⛸💫",
-    "Каждый прыжок — шаг к мечте. Лети смело! ✨",
-    "Пусть лёд будет мягким, а вращения — безупречными! 🌟",
-    "Ты и музыка — одно целое. Танцуй, как никто другой! 🎶",
-    "Сегодня твой день! Оставь след на этом льду! ❄️",
-    "Помни: даже чемпионы начинали с первого шага. Ты на верном пути! 🏆",
-    "Пусть сегодня каждая тройка получится чистой! 🔥",
-    "Улыбнись — и лёд растает от твоего тепла! 😊",
-    "Ты — воплощение грации и силы. Не сомневайся в себе! 💪",
-    "Лёд — твой холст. Нарисуй на нём шедевр! 🎨",
-    "Пусть сегодняшняя тренировка принесёт новые рекорды! 🚀",
-    "Ты создана для больших побед. Вперёд! 🌠",
-    "Каждый падение — шанс подняться ещё выше. Не останавливайся! ⛸",
-    "Пусть твои спирали завораживают, а прыжки восхищают! 💫",
-    "Сегодня ты почувствуешь, как лёд становится твоим другом! ❄️",
-    "Твой труд превращается в волшебство. Продолжай! ✨",
-    "Пусть судьи увидят сегодня твой лучший прокат! 🌟",
-    "Ты — звезда, которая светит даже без софитов! 🌌",
-    "Верь в себя, и зрители поверят в тебя! 💖",
-    "Сегодня твой выходной? Нет, выходной у льда — от твоих скоростей! 😉",
-    "Пусть сегодня каждая дорожка шагов будет идеальной! 🏅",
-    "Ты — буря эмоций на льду. Покажи им всё! 🌪️",
-    "Лёд боится только тех, кто не выходит на тренировку. Ты не из таких! ❄️",
-    "Пусть сегодняшний прокат запомнится как самый вдохновляющий! 🌟",
-    "Ты — огонь, а лёд — твоя стихия. Гори ярче! 🔥",
-    "Помни: даже лутц когда-то был сложным. Ты справишься! 💫",
-    "Сегодня ты сделаешь то, что вчера казалось невозможным! 🚀",
-    "Пусть твой каскад будет чётким, как алмаз! 💎",
-    "Ты — воплощение элегантности. Неси это в мир! 🦢",
-    "Лёд чувствует твою страсть. Отдай ему всё! ❤️",
-    "Сегодня ты будешь лучше, чем вчера. Это главное! 🌱",
-    "Пусть твои вращения закружат всех вокруг! 🌪️",
-    "Ты — автор своей истории. Напиши сегодня красивую главу! 📖",
-    "Помни: даже олимпийские чемпионы когда-то боялись первого прыжка. Ты не одна! ⛸",
-    "Пусть сегодня музыка поведёт тебя за собой! 🎵",
-    "Ты — сила. Ты — грация. Ты — фигуристка! 💃",
-    "Сегодня лёд станет твоим зеркалом — пусть он отражает только лучшее! ✨",
-    "Пусть твой Axel будет таким же ярким, как твоя улыбка! 😊",
-    "Ты не просто скользишь — ты создаёшь искусство! 🎭",
-    "Сегодня ты почувствуешь: лёд — это твой дом. 🏠",
-    "Пусть сегодняшний прокат принесёт тебе радость, а не просто баллы! 🌈",
-    "Ты — вдохновение для тех, кто ещё только мечтает выйти на лёд. 💫",
-    "Помни: даже если не всё получится — ты уже победила, потому что стараешься! 💪",
-    "Пусть твоя программа расскажет историю, которую запомнят все! 📜",
-    "Ты — волшебница, превращающая лёд в эмоции. ✨",
-    "Сегодня ты напомнишь себе, почему начала кататься. ❤️⛸",
-    "Пусть твои пальцы чувствуют лёд, а сердце — музыку! 🎶",
-    "Ты — неповторима. Не сравнивай себя ни с кем! 🌟",
-    "Сегодня ты сделаешь шаг к мечте. Гордись этим! 🚀",
-    "Фигурное катание — это не спорт. Это твоя жизнь. Наслаждайся! ⛸💖"
-  ];
-  // ... остальные ваши пожелания ...
-
-function getRandomWish() {
-  const randomIndex = Math.floor(Math.random() * wishes.length);
-  return wishes[randomIndex];
-}
-openModalBtn.addEventListener('click', () => {
-  wishText.textContent = getRandomWish(); // Устанавливаем случайное пожелание
-  modal.style.display = 'flex'; // Показываем модальное окно
-});
-
-
-closeModalBtn.addEventListener('click', () => {
-  modal.style.display = 'none';
-});
-
-window.addEventListener('click', (event) => {
-  if (event.target == modal) {
-    modal.style.display = 'none';
-  }
-});
-
-window.addEventListener('load', () => {
-  const progressBar = document.querySelector('.progress-bar');
-  progressBar.style.width = '100%';
-});
-
-const wavyText = document.querySelector('.wavy-text'); /* Получаем элемент с текстом */
-wavyText.querySelectorAll('span').forEach((span, index) => { /* Для каждой буквы */
-  span.style.setProperty('--index', index); /* Устанавливаем переменную --index */
-});
-
-const skaterImage = document.querySelector('#bio img');
-
-document.querySelectorAll('nav a').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href');
-    document.querySelector(targetId).scrollIntoView({
-      behavior: 'smooth'
-    });
-  });
-});
-
-
-function openLightbox(img) {
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  lightbox.style.display = 'flex';
-  lightboxImg.src = img.src;
-}
-
-function closeLightbox() {
-  document.getElementById('lightbox').style.display = 'none';
-}
-let currentIndex1 = 0;
-     const images = document.querySelectorAll('.lightbox-gallery img');
-     
-     function changeImage(n) {
-       currentIndex1 += n;
-       if (currentIndex1 >= images.length) currentIndex1 = 0;
-       if (currentIndex1 < 0) currentIndex1 = images.length - 1;
-       document.getElementById('lightbox-img').src = images[currentIndex1].src;
-     }
- // Анимация появления карточек
-document.querySelectorAll('.history-card').forEach((card, index) => {
-  gsap.from(card, {
-    scrollTrigger: {
-      trigger: card,
-      start: "top 80%"
-    },
-    opacity: 0,
-    y: 50,
-    duration: 0.8,
-    delay: index * 0.2
-  });
-});
-
-// Эффект для списка дисциплин
-document.querySelectorAll('.disciplines-list li').forEach(item => {
-  item.addEventListener('mouseenter', () => {
-    gsap.to(item, {
-      x: 10,
-      duration: 0.3
-    });
-  });
-  item.addEventListener('mouseleave', () => {
-    gsap.to(item, {
-      x: 0,
-      duration: 0.3
-    });
-  });
-});
-
-// Эффект нажатия кнопки
-document.querySelector('.glass-button').addEventListener('click', function() {
-  gsap.to(this, {
-    keyframes: [
-      { scale: 0.95, duration: 0.1 },
-      { scale: 1, duration: 0.3 }
-    ]
-  });
-});    
-
-
-   
-
-const filmStrip = document.querySelector('.film-strip');
-let scrollPos = 0;
-
-function autoScroll() {
-  scrollPos += 1;
-  if (scrollPos > filmStrip.scrollWidth / 2) {
-    scrollPos = 0;
-  }
-  filmStrip.style.transform = 'translateX(-${scrollPos}px)';
-  requestAnimationFrame(autoScroll);
-}
-
-// Запустить анимацию (можно отключить для ручной прокрутки)
-autoScroll();
-function setBackground() {
-  const now = new Date();
-  const hour = now.getHours();
-  const body = document.body;
-
-  if (hour >= 6 && hour < 10) { // Утро (6:00 - 10:00)
-      body.className = 'morning';
-  } else if (hour >= 10 && hour < 12) { // День (10:00 - 12:00)
-    body.className = 'mornin';
-  } else if (hour >= 12 && hour < 16) { // День (12:00 - 16:00)
-      body.className = 'afternoon';
-  } else if (hour >= 16 && hour < 18) { // День (16:00 - 18:00)
-    body.className = 'afternoo';
-  } else if (hour >= 18 && hour < 20) { // Вечер (18:00 - 20:00)
-      body.className = 'evening';
-  } else if (hour >= 20 && hour < 22) { // День (20:00 - 22:00)
-    body.className = 'evenin';
- } else if (hour >= 22 && hour < 6) { // День (22:00 - 6:00)
-      body.className = 'night';
-  }
-}
-
-// Вызываем функцию при загрузке страницы
-setBackground();
-
-// Обновляем фон каждую минуту
-setInterval(setBackground, 60000);
-window.addEventListener('scroll', () => {
-  const scrollTop = window.scrollY;
-  const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / documentHeight) * 100;
-  document.querySelector('.scroll-indicator').style.width = `${scrollPercent}%`;
-});
-
-const canvas = document.getElementById('particle-canvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const particles = [];
-
-function createParticle() {
-  const particle = {
-     x: Math.random() * canvas.width,
-     y: Math.random() * canvas.height,
-     radius: Math.random() * 5 + 2,
-     speedX: Math.random() * 1 - 0.5,
-     speedY: Math.random() * 1 - 0.5,
-     color: 'rgba(255, 255, 255, 0.6)'
-   };
-   particles.push(particle);
-}
+/**
+ * Инициализация приложения
+ */
 document.addEventListener('DOMContentLoaded', () => {
-  const bars = document.querySelectorAll('.bar');
-  const containerWidth = document.querySelector('.achievements').offsetWidth;
-  const barCount = bars.length;
-  const barSpacing = 20; // Расстояние между барами
-  const barWidth = (containerWidth - (barCount - 1) * barSpacing) / barCount; // Вычисляем ширину бара
-
-  bars.forEach((bar, index) => {
-      const value = parseInt(bar.dataset.value);
-      const label = bar.dataset.label;
-
-      //Вычисляем позицию и ширину
-      bar.style.width = `${barWidth}px`;
-      bar.style.left = `${index * (barWidth + barSpacing)}px`;
-      bar.style.height = `${value}%`;
-      bar.innerText = label;
-
-      //Tooltip при наведении
-      bar.addEventListener('mouseover', (event) => {
-          const tooltip = document.createElement('div');
-          tooltip.classList.add('tooltip');
-          tooltip.innerText = `Достижение: ${label}, Значение: ${value}%`;
-          tooltip.style.position = 'absolute';
-          tooltip.style.backgroundColor = 'black';
-          tooltip.style.color = 'white';
-          tooltip.style.padding = '5px';
-          tooltip.style.borderRadius = '5px';
-          tooltip.style.top = `${event.clientY - 50}px`; // Над курсором
-          tooltip.style.left = `${event.clientX + 10}px`;// Справа от курсора
-          tooltip.style.zIndex = 10;
-          document.body.appendChild(tooltip);
-
-          bar.addEventListener('mouseout', () => {
-              tooltip.remove();
-          });
-      });
-  });
+  initParticles();
+  setupModal();
+  setupScrollIndicator();
+  setupAchievements();
+  setupGallery();
+  setupTimeBasedStyles();
+  setupTypewriterEffect();
+  setupCustomCursor();
+  setupTooltips();
+  setupAnimations();
 });
 
-const counters = document.querySelectorAll('.count');
+/**
+ * Инициализация частиц фона
+ */
+function initParticles() {
+  const canvas = document.getElementById('particle-canvas');
+  if (!canvas) return;
 
-counters.forEach(counter => {
-  const target = +counter.getAttribute('data-target');
-  let count = 0;
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-  const updateCount = () => {
-    const increment = target / 200; // Скорость анимации
-    if (count < target) {
-      count += increment;
-      counter.innerText = Math.ceil(count);
-      setTimeout(updateCount, 1); // Интервал
+  const particles = Array.from({ length: PARTICLE_CONFIG.count }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random() * (PARTICLE_CONFIG.maxRadius - PARTICLE_CONFIG.minRadius) + PARTICLE_CONFIG.minRadius,
+    speedX: Math.random() * PARTICLE_CONFIG.maxSpeed * 2 - PARTICLE_CONFIG.maxSpeed,
+    speedY: Math.random() * PARTICLE_CONFIG.maxSpeed * 2 - PARTICLE_CONFIG.maxSpeed,
+    color: PARTICLE_CONFIG.colors[Math.floor(Math.random() * PARTICLE_CONFIG.colors.length)]
+  }));
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    particles.forEach(particle => {
+      ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+      ctx.fillStyle = particle.color;
+      ctx.fill();
+
+      // Обновление позиции
+      particle.x += particle.speedX;
+      particle.y += particle.speedY;
+
+      // Отскок от границ
+      if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
+      if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
+    });
+
+    requestAnimationFrame(animateParticles);
+  }
+
+  animateParticles();
+}
+
+/**
+ * Настройка модального окна с пожеланиями
+ */
+function setupModal() {
+  const modal = document.getElementById('modal');
+  const openBtn = document.getElementById('open-modal');
+  const closeBtn = document.getElementById('close-modal');
+  const wishText = document.getElementById('wish-text');
+
+  if (!modal || !openBtn || !closeBtn || !wishText) return;
+
+  const wishes = [
+    "Выпрямись!!!Улыбнись!!!Хорошего настроения и приятного чтения😊",
+    "Пусть каждый день будет наполнен вдохновением и радостью!💖",
+    // ... остальные пожелания
+  ];
+
+  function getRandomWish() {
+    return wishes[Math.floor(Math.random() * wishes.length)];
+  }
+
+  openBtn.addEventListener('click', () => {
+    wishText.textContent = getRandomWish();
+    modal.classList.add('show');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('show');
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('show');
+    }
+  });
+}
+
+/**
+ * Настройка индикатора прокрутки
+ */
+function setupScrollIndicator() {
+  const indicator = document.querySelector('.scroll-indicator');
+  if (!indicator) return;
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    indicator.style.width = `${scrollPercent}%`;
+  });
+}
+/**
+ * Настройка блока достижений
+ */
+function setupAchievements() {
+  const achievementsData = [
+    {
+      year: 2018,
+      description: 'Начала заниматься фигурным катанием',
+      image: 'груша10.jpg',
+      score: '189.45',
+      medal: '🥇'
+    },
+    {
+      year: 2020,
+      description: 'Первое место на городских соревнованиях',
+      image: 'груша18.png',
+      score: '178.30',
+      medal: '🥈'
+    }
+    // ... остальные достижения
+  ];
+
+  const ribbonTrack = document.querySelector('.ribbon-track');
+  if (!ribbonTrack) return;
+
+  // Очистка перед рендерингом (если нужно)
+  ribbonTrack.innerHTML = '';
+
+  achievementsData.forEach(achievement => {
+    const achievementCard = document.createElement('div');
+    achievementCard.className = 'achievement-card';
+    achievementCard.innerHTML = `
+      <div class="medal-icon">${achievement.medal}</div>
+      <img src="${achievement.image}" alt="Достижение ${achievement.year}" loading="lazy">
+      <div class="ribbon-content">
+        <h3>${achievement.year}</h3>
+        <p>${achievement.description}</p>
+        <p class="score">${achievement.score} баллов</p>
+      </div>
+      <div class="ribbon-tail"></div>
+    `;
+    ribbonTrack.appendChild(achievementCard);
+  });
+
+  // Инициализация горизонтальной прокрутки
+  setupHorizontalScroll('.achievements-ribbon');
+}
+
+/**
+ * Настройка горизонтальной прокрутки
+ */
+function setupHorizontalScroll(selector) {
+  const container = document.querySelector(selector);
+  if (!container) return;
+
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  container.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.pageX - container.offsetLeft;
+    scrollLeft = container.scrollLeft;
+    container.style.cursor = 'grabbing';
+  });
+
+  container.addEventListener('mouseleave', () => {
+    isDown = false;
+    container.style.cursor = 'grab';
+  });
+
+  container.addEventListener('mouseup', () => {
+    isDown = false;
+    container.style.cursor = 'grab';
+  });
+
+  container.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - container.offsetLeft;
+    const walk = (x - startX) * 2;
+    container.scrollLeft = scrollLeft - walk;
+  });
+}
+
+/**
+ * Настройка галереи
+ */
+function setupGallery() {
+  // Инициализация SimpleLightbox
+  new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionDelay: 250
+  });
+
+  // Настройка карусели
+  const swiper = new Swiper('.swiper-container', {
+    loop: true,
+    autoplay: {
+      delay: 5000,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  });
+
+  // Обработка кликов на элементы галереи
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', function() {
+      this.classList.toggle('active');
+    });
+  });
+}
+
+/**
+ * Настройка временных стилей (утро/день/вечер/ночь)
+ */
+function setupTimeBasedStyles() {
+  function updateStyles() {
+    const now = new Date();
+    const hour = now.getHours();
+    const body = document.body;
+
+    // Очищаем предыдущие классы
+    body.className = '';
+
+    if (hour >= 6 && hour < 10) {
+      body.classList.add('morning');
+    } else if (hour >= 10 && hour < 12) {
+      body.classList.add('mornin');
+    } else if (hour >= 12 && hour < 16) {
+      body.classList.add('afternoon');
+    } else if (hour >= 16 && hour < 18) {
+      body.classList.add('afternoo');
+    } else if (hour >= 18 && hour < 20) {
+      body.classList.add('evening');
+    } else if (hour >= 20 && hour < 22) {
+      body.classList.add('evenin');
     } else {
-      counter.innerText = target;
+      body.classList.add('night');
     }
-  };
+  }
 
-  updateCount();
-});
-// Анимация появления элементов
-gsap.utils.toArray(".timeline-event").forEach((event, i) => {
-  ScrollTrigger.create({
-    trigger: event,
-    start: "top 70%",
-    onEnter: () => {
-      gsap.to(event, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out"
-      });
-      
-      // Анимация кристалла
-      gsap.from(event.querySelector(".event-ice-crystal"), {
-        scale: 0,
-        duration: 0.6,
-        delay: 0.3,
-        ease: "elastic.out(1, 0.5)"
-      });
-    }
-  });
-});
+  // Обновляем при загрузке и каждую минуту
+  updateStyles();
+  setInterval(updateStyles, 60000);
+}
 
-// Интерактивность при наведении
-document.querySelectorAll(".timeline-event").forEach(event => {
-  event.addEventListener("mouseenter", () => {
-    const crystal = event.querySelector(".event-ice-crystal");
-    gsap.to(crystal, {
-      scale: 1.2,
-      backgroundColor: "#7b68ee",
-      duration: 0.3
-    });
-    document.querySelectorAll('.achievement-card').forEach(card => {
-      card.addEventListener('click', function() {
-        // Анимация при клике
-        gsap.to(this, {
-          scale: 0.95,
-          duration: 0.3,
-          yoyo: true,
-          repeat: 1
-        });
-        
-        // Плавная прокрутка к элементу
-        this.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
-          inline: 'center'
-        });
-      });
-    });
-    // Показ скрытого фото
-    const photo = event.querySelector(".hidden-photo");
-    if (photo) {
-      gsap.to(photo, {
-        maxHeight: "200px",
-        duration: 0.5
-      });
+/**
+ * Эффект печатающегося текста
+ */
+function setupTypewriterEffect() {
+  const elements = document.querySelectorAll('.typing-text');
+
+  elements.forEach(el => {
+    const text = el.dataset.text;
+    let charIndex = 0;
+
+    function type() {
+      if (charIndex < text.length) {
+        el.textContent += text.charAt(charIndex);
+        charIndex++;
+        setTimeout(type, Math.random() * 100 + 150);
+      }
     }
+
+    // Очищаем текст перед началом анимации
+    el.textContent = '';
+    type();
   });
-  
-  event.addEventListener("mouseleave", () => {
-    const crystal = event.querySelector(".event-ice-crystal");
-    gsap.to(crystal, {
-      scale: 1,
-      backgroundColor: "white",
-      duration: 0.3
+}
+/**
+ * Настройка кастомного курсора
+ */
+function setupCustomCursor() {
+  const cursor = document.querySelector('.custom-cursor');
+  if (!cursor) return;
+
+  // Показываем кастомный курсор только на desktop
+  if (window.matchMedia("(pointer: fine)").matches) {
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    });
+
+    // Интерактивные элементы
+    const interactiveElements = ['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'VIDEO'];
+
+    document.querySelectorAll(interactiveElements.join(',')).forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('cursor-hover');
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('cursor-hover');
+      });
+    });
+  } else {
+    cursor.style.display = 'none';
+  }
+}
+
+/**
+ * Изменение стиля курсора
+ */
+function changeCursor(type) {
+  const cursorClasses = ['star-cursor', 'skate-cursor', 'snowflake-cursor'];
+
+  // Удаляем все классы курсора
+  document.body.classList.remove(...cursorClasses);
+
+  // Добавляем нужный класс
+  if (type === 'star') {
+    document.body.classList.add('star-cursor');
+  } else if (type === 'skate') {
+    document.body.classList.add('skate-cursor');
+  }
+  // По умолчанию - снежинка (уже в CSS)
+}
+
+/**
+ * Настройка всплывающих подсказок
+ */
+function setupTooltips() {
+  const tooltip = document.createElement('div');
+  tooltip.className = 'global-tooltip';
+  document.body.appendChild(tooltip);
+
+  document.querySelectorAll('[data-tooltip]').forEach(el => {
+    el.addEventListener('mouseenter', (e) => {
+      const text = el.getAttribute('data-tooltip');
+      const rect = el.getBoundingClientRect();
+
+      tooltip.textContent = text;
+      tooltip.style.left = `${rect.left + rect.width / 2}px`;
+      tooltip.style.top = `${rect.top - 10}px`;
+      tooltip.style.transform = 'translate(-50%, -100%)';
+      tooltip.classList.add('show');
+    });
+
+    el.addEventListener('mouseleave', () => {
+      tooltip.classList.remove('show');
     });
   });
-});
-document.querySelectorAll(".event-ice-crystal").forEach(crystal => {
-  crystal.addEventListener("click", () => {
-    gsap.to(crystal, {
-      keyframes: [
-        { scale: 1.5, duration: 0.2 },
-        { 
-          scale: 1,
-          boxShadow: "0 0 20px 5px rgba(123,104,238,0.5)",
-          duration: 0.3 
-        }
-      ]
+}
+
+/**
+ * Настройка анимаций GSAP
+ */
+function setupAnimations() {
+  // Анимация появления карточек истории
+  gsap.utils.toArray(".history-card").forEach((card, i) => {
+    gsap.from(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: "top 80%",
+        toggleActions: "play none none none"
+      },
+      opacity: 0,
+      y: 50,
+      duration: 0.8,
+      delay: i * 0.2,
+      ease: "power2.out"
     });
   });
-});
-// Анимация цифр статистики
-function animateValue(obj, start, end, duration) {
+
+  // Анимация элементов временной линии
+  gsap.utils.toArray(".timeline-event").forEach(event => {
+    ScrollTrigger.create({
+      trigger: event,
+      start: "top 70%",
+      onEnter: () => {
+        gsap.to(event, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out"
+        });
+
+        // Анимация кристалла
+        gsap.from(event.querySelector(".event-ice-crystal"), {
+          scale: 0,
+          duration: 0.6,
+          delay: 0.3,
+          ease: "elastic.out(1, 0.5)"
+        });
+      }
+    });
+  });
+
+  // Анимация статистики
+  document.querySelectorAll('.stat-number').forEach(el => {
+    const target = +el.getAttribute('data-count');
+    animateValue(el, 0, target, 2000);
+  });
+}
+
+/**
+ * Анимация чисел
+ */
+/**
+ * Анимация числовых значений
+ * @param {HTMLElement} element - DOM элемент для анимации
+ * @param {number} start - Начальное значение
+ * @param {number} end - Конечное значение
+ * @param {number} duration - Длительность анимации в миллисекундах
+ */
+function animateValue(element, start, end, duration) {
   let startTimestamp = null;
   const step = (timestamp) => {
     if (!startTimestamp) startTimestamp = timestamp;
     const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-    obj.innerHTML = Math.floor(progress * (end - start) + start);
-    if (progress < 1) window.requestAnimationFrame(step);
+    element.textContent = Math.floor(progress * (end - start) + start);
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    }
   };
   window.requestAnimationFrame(step);
 }
 
-document.querySelectorAll('.stat-number').forEach(el => {
-  animateValue(el, 0, parseInt(el.getAttribute('data-count')), 2000);
-});
+/**
+ * Настройка аккордеона
+ */
+function setupAccordion() {
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', function() {
+      const item = this.parentElement;
+      const isActive = item.classList.contains('active');
 
-// Подсказки
-document.querySelectorAll('.tooltip').forEach(item => {
-  item.addEventListener('mouseenter', function() {
-    gsap.to(this.querySelector('.tooltip-text'), {
-      opacity: 1,
-      y: 0,
-      duration: 0.3
-    });
-  });
-  item.addEventListener('mouseleave', function() {
-    gsap.to(this.querySelector('.tooltip-text'), {
-      opacity: 0,
-      y: 10,
-      duration: 0.2
-    });
-  });
-});
-
-// Автоматическое обновление подписи
-document.querySelectorAll('.film-frame').forEach(frame => {
-  frame.addEventListener('mouseenter', function() {
-    const caption = this.closest('.film-reel-gallery').querySelector('.photo-caption');
-    caption.textContent = this.querySelector('img').alt;
-  });
-});
-
-// Плавное ускорение/замедление
-const reelTrack = document.querySelector('.reel-track');
-let isHovered = false;
-
-reelTrack.addEventListener('mouseenter', () => {
-  isHovered = true;
-  gsap.to(reelTrack, {
-    animationPlayState: 'paused',
-    duration: 0.5
-  });
-});
-
-reelTrack.addEventListener('mouseleave', () => {
-  isHovered = false;
-  gsap.to(reelTrack, {
-    animationPlayState: 'running',
-    duration: 0.5
-  });
-});
-document.querySelectorAll('.film-frame img').forEach(img => {
-  img.addEventListener('click', function() {
-    this.requestFullscreen().catch(e => console.log(e));
-  });
-});
-
-
-const photoButton = document.getElementById('photoButton');
-const photoOverlay = document.getElementById('photoOverlay');
-
-photoButton.addEventListener('click', () => {
-  photoOverlay.style.display = 'flex'; // Показать перекрытие
-});
-
-photoOverlay.addEventListener('click', (event) => {
-  if (event.target === photoOverlay) { // Закрыть, если кликнули вне фотографии
-    photoOverlay.style.display = 'none';
-  }
-});
-function changeCursor(type) {
-  if (type === 'star') {
-      document.body.classList.add('star-cursor');
-      document.body.classList.remove('skate-cursor');
-  } else if (type === 'skate') {
-      document.body.classList.add('skate-cursor');
-      document.body.classList.remove('star-cursor');
-  } else {
-      document.body.classList.remove('star-cursor');
-      document.body.classList.remove('skate-cursor');
-  }
-}
-const carouselInner = document.querySelector('.carousel-inner');
-const carouselItems = document.querySelectorAll('.carousel-item');
-const prevButton = document.querySelector('.carousel-control.prev');
-const nextButton = document.querySelector('.carousel-control.next');
-let currentIndex = 0;
-
-function updateCarousel() {
-  carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
-}
-
-prevButton.addEventListener('click', () => {
-  currentIndex = Math.max(currentIndex - 1, 0);
-  updateCarousel();
-});
-
-nextButton.addEventListener('click', () => {
-  currentIndex = Math.min(currentIndex + 1, carouselItems.length - 1);
-  updateCarousel();
-});
-document.addEventListener('DOMContentLoaded', () => {
-  const filterButtons = document.querySelectorAll('.filters button');
-  const galleryItems = document.querySelectorAll('.gallery-item');
-
-  filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const filter = button.dataset.filter;
-
-      // Убираем класс "active" у всех кнопок
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      // Добавляем класс "active" к нажатой кнопке
-      button.classList.add('active');
-
-      galleryItems.forEach(item => {
-        if (filter === 'all' || item.dataset.category === filter) {
-          item.classList.remove('hidden');
-        } else {
-          item.classList.add('hidden');
-        }
+      // Закрываем все элементы
+      document.querySelectorAll('.accordion-item').forEach(el => {
+        el.classList.remove('active');
       });
+
+      // Открываем текущий, если был закрыт
+      if (!isActive) {
+        item.classList.add('active');
+      }
     });
   });
-});
-
-for (let i = 0; i < 100; i++) {
-   createParticle();
 }
 
-const clickRevealButton = document.querySelector('.click-reveal-button'); /* Получаем кнопку */
-const hiddenText = document.querySelector('.hidden-text'); /* Получаем текст */
-
-clickRevealButton.addEventListener('click', () => { /* При клике на кнопку */
-  hiddenText.style.display = hiddenText.style.display === 'block' ? 'none' : 'block'; /* Показываем/скрываем текст */
-});
-function draw() {
- ctx.clearRect(0, 0, canvas.width, canvas.height);
-
- particles.forEach(particle => {
-   ctx.beginPath();
-   ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-   ctx.fillStyle = particle.color;
-   ctx.fill();
-
-   particle.x += particle.speedX;
-   particle.y += particle.speedY;
-
-   if (particle.x < 0 || particle.x > canvas.width) {
-        particle.speedX *= -1;
-   }
-
-    if (particle.y < 0 || particle.y > canvas.height) {
-        particle.speedY *= -1;
-    }
- });
-requestAnimationFrame(draw);
-}
-draw();
-const typingTextElement = document.querySelector('.typing-text');
-const text = typingTextElement.dataset.text;
-let charIndex = 0;
-
-function typeText() {
-   if(charIndex < text.length) {
-       typingTextElement.textContent += text.charAt(charIndex);
-       charIndex++;
-       setTimeout(typeText, 250);
+/**
+ * Обработчик изменения размера окна
+ */
+function handleResize() {
+  const canvas = document.getElementById('particle-canvas');
+  if (canvas) {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
   }
 }
-typeText();
-const toggleButton = document.getElementById('toggleSidebar');
-const sidebar = document.getElementById('sidebar');
-toggleButton.addEventListener('click', function() {
-   sidebar.classList.toggle('open');
-});
-document.querySelectorAll('.animated-text span').forEach((span, i) => {
-  span.style.setProperty('--i', i);
-});
-   //Achievements:
-document.addEventListener('DOMContentLoaded', function () {
-  const achievements = [
-    { year: 2018, description: 'Начала заниматься фигурным катанием' },
-    { year: 2020, description: 'Первое место на городских соревнованиях' },
-    { year: 2022, description: 'Участие в чемпионате области' },
-    { year: 2024, description: 'Присвоение звания кандидата в мастера спорта' }
-  ];
 
-  const timeline = document.querySelector('.timeline');
-
-  achievements.forEach(achievement => {
-    const item = document.createElement('div');
-    item.classList.add('timeline-item');
-
-    const year = document.createElement('h3');
-    year.textContent = achievement.year;
-    item.appendChild(year);
-
-    const description = document.createElement('p');
-    description.textContent = achievement.description;
-    item.appendChild(description);
-
-    timeline.appendChild(item);
-  });
-});
- // Load More Gallery
- const loadMoreButton = document.getElementById('load-more-gallery');
- const galleryGrid = document.querySelector('.gallery-grid');
- let loadedImages = 4;
- loadMoreButton.addEventListener('click', function() {
-     for (let i = 0; i < 4; i++) {
-         loadedImages++;
-         if (loadedImages > 12) {
-             loadMoreButton.style.display = 'none';
-             break;
-         }
-         const galleryItem = document.createElement('div');
-         galleryItem.classList.add('gallery-item', 'flip-card');
-         galleryItem.innerHTML = `
-             <div class="flip-card-inner">
-                 <div class="flip-card-front">
-                     <img src="img/gallery${loadedImages}.jpg" alt="Фото ${loadedImages}">
-                 </div>
-                 <div class="flip-card-back">
-                     <h3>Фото ${loadedImages}</h3>
-                                             <p>Описание фото ${loadedImages}</p>
-                 </div>
-             </div>
-         `;
-         galleryGrid.appendChild(galleryItem);
-     }
- });
-    
-const showAchievementButton = document.getElementById('showAchievementButton');
-const achievement = document.getElementById('achievement1'); // Или любой другой ID достижения
-
-showAchievementButton.addEventListener('click', () => {
-  achievement.classList.add('show'); // Показываем достижение
-
-  // Скрываем достижение через 3 секунды
-  setTimeout(() => {
-    achievement.classList.remove('show');
-  }, 3000);
-});
-
-
-
-
+// Инициализация
+window.addEventListener('resize', handleResize);
+setupAccordion();
