@@ -21,7 +21,7 @@ window.addEventListener('scroll', function() {
 
 
   if (scrollPosition <= 50) {
-    scrollElement.style.transform = 'scale(1) rotate(0deg)';
+    scrollElement.style.transform = `scale(1) rotate(0deg)`;
   }
 });
 document.querySelectorAll('.accordion-header').forEach(header => {
@@ -232,7 +232,7 @@ function autoScroll() {
   if (scrollPos > filmStrip.scrollWidth / 2) {
     scrollPos = 0;
   }
-  filmStrip.style.transform = 'translateX(-${scrollPos}px)';
+  filmStrip.style.transform = `translateX(-${scrollPos}px)`;
   requestAnimationFrame(autoScroll);
 }
 
@@ -348,6 +348,36 @@ counters.forEach(counter => {
 
   updateCount();
 });
+// Анимация появления элементов
+gsap.from(".contact-item", {
+  scrollTrigger: {
+    trigger: ".ice-footer",
+    start: "top 80%"
+  },
+  opacity: 0,
+  y: 50,
+  stagger: 0.2,
+  duration: 1
+});
+
+// Эффект "дыхания" для контактов
+document.querySelectorAll('.contact-item').forEach(item => {
+  item.addEventListener('mouseenter', () => {
+    gsap.to(item, {
+      scale: 1.05,
+      boxShadow: "0 5px 15px rgba(0,0,0,0.2)",
+      duration: 0.3
+    });
+  });
+  item.addEventListener('mouseleave', () => {
+    gsap.to(item, {
+      scale: 1,
+      boxShadow: "none",
+      duration: 0.3
+    });
+  });
+});
+
 // Анимация появления элементов
 gsap.utils.toArray(".timeline-event").forEach((event, i) => {
   ScrollTrigger.create({
