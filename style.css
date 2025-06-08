@@ -10,6 +10,12 @@
   --crystal-shadow: rgba(176, 196, 222, 0.3);
   --text-color: #2F4F4F;
 }
+@font-face {
+    font-family: 'Faberge';
+    src: url('ofont.ru_Faberge.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 /* Анимации */
 @keyframes snow-spin {
@@ -72,6 +78,67 @@ body {
     align-items: center;
     z-index: 1000;
   }
+
+#open-modal {
+    width: 200px;
+    height: 50px;
+    background-color: rgb(128, 160, 228);
+    color: white;
+    font-family: 'Faberge', cursive, sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    
+    border: 3px solid #80a0e4;
+    border-radius: 25px;
+    cursor: pointer;
+    /* Центрирование текста */
+    display: flex;
+    justify-content: center; /* горизонтально */
+    align-items: center;     /* вертикально */
+    position: relative;
+    box-shadow:
+        0 0 10px #80a0e4,
+        0 0 20px #80a0e4,
+        0 0 40px #5a7bd8,
+        inset 0 0 10px #a0b0f0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    z-index: 0;
+}
+
+#open-modal::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -25%;
+    width: 150%;
+    height: 200%;
+    background: linear-gradient(120deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.3) 100%);
+    transform: skewX(-25deg);
+    animation: shine 3s infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes shine {
+    0% {
+        left: -150%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+#open-modal:hover {
+    background-color: #5a7bd8;
+    border-color: #5a7bd8;
+    box-shadow:
+        0 0 15px #5a7bd8,
+        0 0 30px #5a7bd8,
+        0 0 50px #3f5bb5,
+        inset 0 0 15px #6f7ce7;
+    color: #fff;
+}
 
 
 

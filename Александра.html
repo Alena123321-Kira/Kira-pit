@@ -16,10 +16,13 @@
         font-size: 1.2em;
       }
       .vibes {
-        font-family: 'Great Vibes', cursive;
-        font-size: 2em;
-        color: #be97eb;
-      }
+    font-family: 'Faberge', cursive, sans-serif;
+    font-size: 2em;
+    color: #be97eb;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
       
     </style>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
@@ -32,14 +35,20 @@
   </head>
 <body>
   
-    <h1> <p class="vibes">   Александра Ковалевская </p></h1>
-    <h2> <p class="vibes"> Фигурное катание</p></h2>
+    <h1> <p class="vibes">   Александра Ковалевская </p> </h1>
+    <h2> <p class="vibes">  Фигурное катание</p> </h2>
 
    
  <!-- Бегущая строка -->
  <div class="marquee">
   <span>«Лёд — моя стихия» • Личный рекорд: 189.45 баллов • Чемпионка России 2023 •</span>
 </div>
+<style>
+  .marquee{
+    opacity: 0.5;
+    background-color: #b874d3;
+  }
+</style>
 <!-- Плавающее меню -->
 
 <style>
@@ -54,7 +63,34 @@
   .menu-item {
     margin: 10px;
   }
-  
+  .menu-item a {
+    display: inline-block;
+    position: relative;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #ADD8E6;
+    border-radius: 20px;
+    font-family: 'Faberge', cursive, sans-serif;
+
+    /* Добавим необычную окантовку */
+    border: 3px double #5a9bd8; /* двойная линия */
+    box-shadow:
+        0 0 8px 2px rgba(90, 155, 216, 0.7), /* светящийся эффект */
+        inset 0 0 5px rgba(255, 255, 255, 0.5); /* внутренняя подсветка */
+
+    transition: all 0.3s ease;
+}
+
+.menu-item a:hover {
+    background-color: #87CEEB;
+    color: black;
+    border-color: #2a5ca8;
+    box-shadow:
+        0 0 12px 3px rgba(42, 92, 168, 0.9),
+        inset 0 0 7px rgba(255, 255, 255, 0.7);
+}
+
   .menu-item a {
     display: inline-block;
     position: relative;
@@ -108,7 +144,7 @@
             <h1><div  id="главная"><center >Александра о фигурном катании:</div></h1></center>
             <p style="font-size: 15px;"><i><h1 class="animated-text"><span><u><blockquote> <font color="#440066">"Мечты сбываются только тогда, когда ты веришь в свои силы и не боишься испытаний. Фигурное катание - это не только спорт, но и искусство, которое требует терпения, стойкости и отчаянной мотивации. Помни, что твои усилия не останутся незамеченными, и каждый шаг на льду приближает тебя к своей мечте. Не останавливайся, иди вперед и покори мир своим талантом и стойкостью! 💪⛸✨"</font></blockquote></u></span></i></p></h1>
         <div class ="button-contaner">
-            <center ><button class="shape-button"><button id="open-modal"  class="border-button" style="width: 200px; height: 50px; background-color:rgb(128, 160, 228)"> ОТКРОЙ</button></button></center ></div>
+            <center ><button class="shape-button"><button id="open-modal"  class="border-button" style=" background-color:rgb(128, 160, 228)"> ОТКРОЙ</button></button></center ></div>
               <div id="modal" class="modal">
                   <div class="modal-content">
                     <span id="close-modal">&times;</span>
