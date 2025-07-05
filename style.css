@@ -290,7 +290,7 @@ nav a {
   .parallax-container {
     position: relative;
     background-image: url("Фото6.jpg");
-    height: 100vh; /* Высота контейнера */
+    height: 200vh; /* Высота контейнера */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -299,7 +299,7 @@ nav a {
   
   .content {
     position: absolute;
-    top: 50%;
+    top: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
