@@ -600,7 +600,14 @@ document.addEventListener('DOMContentLoaded', () => {
 for (let i = 0; i < 100; i++) {
    createParticle();
 }
-
+document.querySelectorAll('.ring').forEach(ring => {
+    ring.addEventListener('mouseover', () => {
+        ring.style.transform = 'scale(1.2)';
+    });
+    ring.addEventListener('mouseout', () => {
+        ring.style.transform = 'scale(1)';
+    });
+});
 const clickRevealButton = document.querySelector('.click-reveal-button'); /* Получаем кнопку */
 const hiddenText = document.querySelector('.hidden-text'); /* Получаем текст */
 
@@ -675,6 +682,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
     timeline.appendChild(item);
   });
+});
+const openBtn = document.getElementById('open-popup');
+const closeBtn = document.getElementById('close-popup');
+const popup = document.getElementById('popup');
+
+// Открытие попапа с анимацией
+openBtn.addEventListener('click', () => {
+    popup.classList.add('active');
+});
+
+// Закрытие попапа с анимацией
+closeBtn.addEventListener('click', () => {
+    popup.classList.remove('active');
+});
+
+// Закрытие при клике вне попапа
+popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+        popup.classList.remove('active');
+    }
 });
  // Load More Gallery
  const loadMoreButton = document.getElementById('load-more-gallery');
