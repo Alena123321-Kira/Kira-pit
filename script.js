@@ -1,4 +1,3 @@
-
 const glitchElements = document.querySelectorAll('.glitch'); /* Получаем все элементы с классом "glitch" */
 glitchElements.forEach(element => { /* Для каждого элемента */
   element.setAttribute('data-text', element.textContent); /* Копируем текст в атрибут data-text */
@@ -8,6 +7,8 @@ window.addEventListener('scroll', function() {
   const scrollPosition = window.pageYOffset;
   parallax.style.transform = `translateY(${scrollPosition * 0.5}px)`; // 0.5 - скорость параллакса
 });
+document.body.style.cursor = "url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\"><text x=\"0\" y=\"20\" style=\"font-size:20px;\">⛸️</text></svg>') 12 12, auto";
+
 const customCursor = document.querySelector('.custom-cursor');
 document.addEventListener('mousemove', (e) => {
     customCursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
@@ -28,6 +29,7 @@ document.querySelectorAll('.accordion-header').forEach(header => {
   header.addEventListener('click', function() {
      this.parentElement.classList.toggle('active');
  });
+ 
 });
  // Плавная прокрутка
  document.querySelectorAll('.hex-btn').forEach(btn => {
@@ -125,8 +127,9 @@ function getRandomWish() {
 }
 openModalBtn.addEventListener('click', () => {
   wishText.textContent = getRandomWish(); // Устанавливаем случайное пожелание
-  modal.style.display = 'flex'; // Показываем модальное окно
-});
+  modal.style.display = 'flex'; 
+});// Показываем модальное окно
+
 
 
 closeModalBtn.addEventListener('click', () => {
@@ -161,7 +164,23 @@ document.querySelectorAll('nav a').forEach(anchor => {
   });
 });
 
-
+// Активация анимации при появлении в зоне видимости
+document.addEventListener('DOMContentLoaded', function() {
+  const pulsatingText = document.querySelector('.pulsating-text');
+  
+  // Сразу запускаем анимацию
+  pulsatingText.style.visibility = 'visible';
+  
+  // Или активируем при скролле
+  /*
+  window.addEventListener('scroll', function() {
+    const position = pulsatingText.getBoundingClientRect();
+    if (position.top < window.innerHeight && position.bottom >= 0) {
+      pulsatingText.style.visibility = 'visible';
+    }
+  });
+  */
+});
 function openLightbox(img) {
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
@@ -328,7 +347,32 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   });
 });
-
+const achievementsSwiper = new Swiper('.achievements-swiper', {
+  slidesPerView: 'auto',
+  spaceBetween: 20,
+  centeredSlides: true,
+  loop: true,
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  breakpoints: {
+    640: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+      spaceBetween: 25
+    }
+  }
+});
 const counters = document.querySelectorAll('.count');
 
 counters.forEach(counter => {
@@ -542,18 +586,7 @@ photoOverlay.addEventListener('click', (event) => {
     photoOverlay.style.display = 'none';
   }
 });
-function changeCursor(type) {
-  if (type === 'star') {
-      document.body.classList.add('star-cursor');
-      document.body.classList.remove('skate-cursor');
-  } else if (type === 'skate') {
-      document.body.classList.add('skate-cursor');
-      document.body.classList.remove('star-cursor');
-  } else {
-      document.body.classList.remove('star-cursor');
-      document.body.classList.remove('skate-cursor');
-  }
-}
+
 const carouselInner = document.querySelector('.carousel-inner');
 const carouselItems = document.querySelectorAll('.carousel-item');
 const prevButton = document.querySelector('.carousel-control.prev');
@@ -730,9 +763,3 @@ popup.addEventListener('click', (e) => {
          galleryGrid.appendChild(galleryItem);
      }
  });
-    
-    
-
-
-
-
